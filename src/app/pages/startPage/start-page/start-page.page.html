@@ -1,9 +1,96 @@
-<ion-header>
+<div class="container ion-padding">
+
+  <div class="header">
+    <ion-buttons slot="end">
+      <ion-icon size="large" colar='gray' name="log-in"></ion-icon>
+    </ion-buttons>
+  </div>
+
+  <div class="collection">
+    <div class="serch">
+      <ion-label>Choose the <br>product you love</ion-label>
+      <ion-searchbar style="border-radius: 10%;" animated showCancelButton="focus"></ion-searchbar>
+    </div>
+    <div class="category">
+      <ion-label>Categories</ion-label>
+
+      <div class="slide">
+        
+        <ion-slides id="slide" roundLengths=true scrollbar=false [options]="slideOpts">
+          <ion-slide style="background-color: aqua;">
+            <h1>Slide 3</h1>
+          </ion-slide>
+          <ion-slide style="background-color: azure;">
+            <h1>Slide 3</h1>
+          </ion-slide>
+          <ion-slide style="background-color:burlywood;">
+            <h1>Slide 3</h1>
+          </ion-slide>
+          <ion-slide>
+            
+          </ion-slide>
+        </ion-slides>
+
+
+
+      </div>
+    </div>  
+
+  </div>
+
+</div>
+
+
+
+
+
+<!-- 
   <ion-toolbar>
-    <ion-title>startPage</ion-title>
-  </ion-toolbar>
-</ion-header>
+   <ion-buttons slot="end" class="ion-padding">
+     <ion-menu-button>
+      <ion-icon size="large" name="menu-sharp"></ion-icon>
+     </ion-menu-button>
+     <ion-icon size="large" name="menu-sharp"></ion-icon>
+    
+   </ion-buttons>
+  </ion-toolbar> 
 
-<ion-content>
 
-</ion-content>
+<ion-content class="ion-padding" style="background-color: burlywood;">
+  <ion-buttons slot="end" class="ion-padding">
+    <ion-menu-button>
+     <ion-icon size="large" name="menu-sharp"></ion-icon>
+    </ion-menu-button>
+    <ion-icon size="large" name="menu-sharp"></ion-icon>
+   
+  </ion-buttons>
+  <div class="text1 ion-padding">
+    <p>Hello <br> How can we help you <br>today?</p>
+  </div>
+
+  <div class="title ion-padding">
+    <h2>Categories</h2>
+  </div>
+  <div class="category">
+    <ion-slides id="slide" roundLengths=true scrollbar=false [options]="slideOpts">
+      <ion-slide style="background-color: aqua;">
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">      
+        </div>
+       
+      </ion-slide>
+      <ion-slide style="background-color: azure;">
+        <div class="img">
+          <img src="../../../../assets/grinder/3.jfif">      
+        </div>
+      </ion-slide>
+      <ion-slide style="background-color:burlywood;">
+        <h1>Slide 3</h1>
+      </ion-slide>
+      <ion-slide>
+        
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>-->

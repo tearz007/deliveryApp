@@ -47,9 +47,7 @@ export class LoginPage implements OnInit {
       alert(e.message)
     })
   }
-  test() {
-   this.userInfor.test()
-  }
+
 
 
   facebookLogin() {

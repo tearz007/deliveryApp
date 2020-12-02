@@ -1,0 +1,70 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: cornsilk;
+    .header{
+        width: 100%;
+        height: 10%;
+        background-color: cyan;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .collection{
+        width: 100%;
+        height: 90%;
+         background-color: darkcyan;
+    }
+    
+}
+.slide{
+
+background-color: darkgoldenrod;
+    ion-slide{
+    width: 50%;
+    height: 50%;
+    border-radius: 10%;
+    margin-left: 5%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*.category{
+    padding-top: 10px;
+    // height: 100vh;
+    
+    .title{
+      margin: auto;
+      text-align: left;
+      justify-content: left;
+    }
+}
+.category ion-slide{
+    width: 40%;
+    height: 150px;
+    border-radius: 10%;
+    margin-left: 5%;
+}
+.img{
+    width: 100%;
+    height: 100%;  
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+#slide{
+// background-color: rgb(136, 22, 22);
+}*/

@@ -12,4 +12,12 @@ export class StartPagePage implements OnInit {
   ngOnInit() {
   }
 
+  slideOpts = {
+    initialSlide: 0,
+    slidesPerView:2,
+    speed: 400,
+    spaceBetween:10,
+    runCallbacksOnInit:true,
+  };
+
 }

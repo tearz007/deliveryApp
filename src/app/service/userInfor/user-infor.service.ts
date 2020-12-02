@@ -30,18 +30,8 @@ export class UserInforService {
       console.log(uid)
     }
   }
-  test(){
-    this.afs.collection("uid").doc('fd').set({
-      userName: "email",
-      id: "uid",
 
-    }).then(function () {
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
-  }
+  
 
   createUser() {
     var user = firebase.auth().currentUser;
