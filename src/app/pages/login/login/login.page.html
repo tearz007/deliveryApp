@@ -1,0 +1,45 @@
+<div class="contain">
+
+  <div class="collection">
+    <ion-text id="text" class="ion-padding">Login</ion-text>
+    <div class="log">
+      <ion-input clearInput type="email" [(ngModel)]="username" placeholder="email"></ion-input>
+    </div>
+    <div class="log">
+      <ion-input clearInput type="password" [(ngModel)]="password" placeholder="password"></ion-input>
+    </div>
+
+    <div class="btn">
+      <ion-button expand="block" fill="outline" (click)=" emailLogin()">Sign in</ion-button>
+    </div>
+
+    <div class="signin_option">
+      <ion-text class="ion-padding">-oR login with-</ion-text>
+      <br>
+      <div class="signin_math ion-padding">
+        <div class="mathoud"  (click)=" googleLogin()">
+          <ion-icon slot="center" name="logo-google" size="large"></ion-icon>
+        </div>
+        <div class="mathoud" (click)="facebookLogin()">
+          <ion-icon slot="center" name="logo-facebook" size="large" color="primary"></ion-icon>
+        </div>
+        <div class="mathoud" (click)=" createAcc()">
+          <ion-icon slot="center" name="call" size="large"></ion-icon>
+        </div>
+      </div>
+          
+      <div class="signup">
+        <ion-text class="ion-padding">Dont have an account?<a (click)="toRegistration()">Signup</a></ion-text>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title>@lets get fucked up together</ion-title>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</div>

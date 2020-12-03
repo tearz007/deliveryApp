@@ -1,0 +1,83 @@
+* {
+    font-family: cursive;
+  }
+  
+  .contain {
+    width: 100vw;
+    height: 100vh;
+    // background-color: antiquewhite;
+    // background-image: url("../../assets/5.png");
+    background-position: top;
+    background-size: 500px;
+    background-repeat: no-repeat;
+    position: relative;
+    #text {
+      font-size: 20px;
+      border-bottom: 1px solid gray;
+    }
+    .collection {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      .log {
+        //border: 1px solid black;
+        margin-top: 10%;
+        box-shadow: 2px 2px 2px 2px;
+        border-radius: 5px;
+      }
+      .btn {
+        margin: auto;
+        text-align: center;
+        width: 70%;
+        margin-top: 10%;
+      }
+      .tosignUp{
+        float: right;
+       // font-size: 10px;
+      }
+    }
+  
+    .signin_option{
+      margin: auto;
+      text-align: center;
+      align-items: center;
+      padding-top: 10px;
+  
+      .signin_math{
+          width: 100%;
+          height: 15vh;
+          //background-color: gray;
+          display: flex;
+          
+          
+        .mathoud{
+          width: 25%;
+          height: 100%;
+          background-color: honeydew;
+          border-radius: 10px;
+          margin: auto;
+          text-align: center;
+          align-items: center;
+          box-shadow: 2px 2px;
+          position: relative;
+  
+          ion-icon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+  

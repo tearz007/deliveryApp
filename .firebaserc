@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "wedeale": {
+      "hosting": {
+        "app": [
+          "wedeale"
+        ]
+      }
+    }
+  }
+}
