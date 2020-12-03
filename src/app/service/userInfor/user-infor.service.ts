@@ -47,6 +47,10 @@ export class UserInforService {
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, pass, uid;
 
+   this.afs.collection(uid).doc(uid).get().subscribe(data=>{
+     data.id
+   })
+
     if (user != null) {
       name = user.displayName;
       email = user.email;
@@ -58,7 +62,6 @@ export class UserInforService {
     this.afs.collection(uid).doc(uid).set({
       userName: email,
       id: uid,
-
     }).then(function () {
         console.log("Document successfully written!");
       })
@@ -66,6 +69,4 @@ export class UserInforService {
         console.error("Error writing document: ", error);
       });
   }
-
-
 }

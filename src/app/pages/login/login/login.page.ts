@@ -26,18 +26,14 @@ export class LoginPage implements OnInit {
   createAcc() {
     this.login.createAcc(this.username, this.password).then(() => {
       alert("Account is created")
-     
-
     }).catch(e => {
       alert(e.message)
     })
   }
 
-
   emailLogin() {
     this.login.userLogin(this.username, this.password).then(() => {
       alert("signed in")
-
       this.userInfor.createUser()
     }).catch(e => {
       alert(e.message)
@@ -64,7 +60,7 @@ export class LoginPage implements OnInit {
   }
 
   toRegistration() {
-    this.route.navigate(['regiter'])
+    this.route.navigate(['register'])
   }
 
   toMenu() {
