@@ -64,5 +64,8 @@ export class LoginPage implements OnInit {
   toMenu() {
     this.route.navigate(['menu'])
   }
+  toStart() {
+    this.route.navigate(['tap'])
+   }
 
 }

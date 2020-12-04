@@ -1,45 +1,76 @@
-<div class="container ion-padding">
+<ion-content>
+  <div class="container ">
+    <div class="header ion-padding">
+      <ion-buttons (click)="toLogin() "  class="log_btn">
+        <ion-button>
+          <ion-icon size="large" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
 
-  <div class="header">
-    <ion-buttons slot="end">
-      <ion-icon size="large" colar='gray' name="log-in"></ion-icon>
-    </ion-buttons>
-  </div>
+      <ion-buttons class="menu_btn">
+        <ion-menu-button >
+          <ion-icon size="large" name="menu-sharp"></ion-icon>
+        </ion-menu-button>
+      </ion-buttons>
 
-  <div class="collection">
-    <div class="serch">
-      <ion-label>Choose the <br>product you love</ion-label>
-      <ion-searchbar style="border-radius: 10%;" animated showCancelButton="focus"></ion-searchbar>
     </div>
-    <div class="category">
-      <ion-label>Categories</ion-label>
-
-      <div class="slide">
-        
-        <ion-slides id="slide" roundLengths=true scrollbar=false [options]="slideOpts">
-          <ion-slide style="background-color: aqua;">
-            <h1>Slide 3</h1>
-          </ion-slide>
-          <ion-slide style="background-color: azure;">
-            <h1>Slide 3</h1>
-          </ion-slide>
-          <ion-slide style="background-color:burlywood;">
-            <h1>Slide 3</h1>
-          </ion-slide>
-          <ion-slide>
-            
-          </ion-slide>
-        </ion-slides>
-
-
-
+    
+    <div class="collect ion-padding">
+      <div class="title">
+        <ion-label>Categories...</ion-label>
       </div>
-    </div>  
+      <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slideOpts">
+        <ion-slide>
+          <div class="item" (click)="presentModal()">
+            <div class="img">
+              <img src="../../../../assets/grinder/2.jfif">
+            </div>
+
+          </div>
+          <div class="infor">
+            <ion-label>Grinder card</ion-label>
+          </div>
+
+        </ion-slide>
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/lighter/1.jpeg">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/rolling/OIP.jfif">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/one h/4.jpg">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+
+      </ion-slides>
+
+    </div>
 
   </div>
-
-</div>
-
+</ion-content>
 
 
 

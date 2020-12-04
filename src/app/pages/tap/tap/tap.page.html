@@ -1,4 +1,41 @@
- <div class="one">
+<ion-menu onclick=toggle side="start" type="overlay" contentId="main">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Dealer</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item close=true (click)="toHome()">
+          <ion-icon name="home"></ion-icon>Home
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item (click)=" toCart()">
+          <ion-icon name="cart"></ion-icon>Cart
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item>
+          <ion-icon name="map"></ion-icon>Map
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item (click)="toProfile()">
+          <ion-icon name="person-circle"></ion-icon>Profile
+        </ion-item>
+      </ion-menu-toggle>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>
+
+
+<!-- 
+<div class="one">
  <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="start-page">
@@ -17,11 +54,11 @@
       </ion-tab-button>
 
       <ion-tab-button tab="profile">
-        <ion-icon name="person-circle"></ion-icon>
+        
         <ion-label>profile</ion-label>
       </ion-tab-button>
       
     </ion-tab-bar>
   </ion-tabs>
-</div>
-  <!-- <ion-icon name="log-in"></ion-icon> -->
+</div> -->
+<!-- <ion-icon name="log-in"></ion-icon> -->

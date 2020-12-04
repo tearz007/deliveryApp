@@ -13,6 +13,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { environment} from '../environments/environment'
 import { TapPage } from './pages/tap/tap/tap.page';
 
+
 @NgModule({
   declarations: [AppComponent, TapPage],
   entryComponents: [],

@@ -6,7 +6,12 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'tap',
+    redirectTo: 'tap/start-page',
+    pathMatch: 'full'
+  },
+  {
+    path: 'tap',
+    redirectTo: 'tap/start-page',
     pathMatch: 'full'
   },
   {
@@ -18,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'start-page',
+    loadChildren: () => import('./pages/startPage/start-page/start-page.module').then( m => m.StartPagePageModule)
+  },
+  {
     path: 'tap',component:TapPage,
     children:[
       {
@@ -25,7 +34,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/startPage/start-page/start-page.module').then( m => m.StartPagePageModule)
       },
       {
-        path: 'card',
+        path: 'cart',
         loadChildren: () => import('./pages/card/card/card.module').then( m => m.CardPageModule)
       },
       
@@ -34,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/profile/profile/profile.module').then( m => m.ProfilePageModule)
       },
     ]
+  },
+  {
+    path: 'model',
+    loadChildren: () => import('./pages/model/model/model.module').then( m => m.ModelPageModule)
   },
  
 ];
