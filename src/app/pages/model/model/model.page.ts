@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DisplayService } from 'src/app/service/display/display.service';
 
 @Component({
   selector: 'app-model',
@@ -8,19 +9,28 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModelPage implements OnInit {
 
-
-  constructor(public modalCtrl: ModalController) { }
+fireData=[]
+collect:string
+  constructor(public modalCtrl: ModalController,private inforService:DisplayService) { }
 
   ngOnInit() {
+    this.collect=this.inforService.collection
+    this.inforService.getCategories(this.collect).subscribe(firebaseData=>{
+      this.fireData=[]
+      firebaseData.forEach(a => {
+        let data:any=a.payload.doc.data()
+        data.id=a.payload.doc.id
+        this.fireData.push(data)
+      });
+    })
+
   }
+
   dismiss() {
-    
-      // using the injected ModalController this page
-      // can "dismiss" itself and optionally pass back data
+
       this.modalCtrl.dismiss({
         'dismissed': true
-      });
-    
+      }); 
   }
 
 }

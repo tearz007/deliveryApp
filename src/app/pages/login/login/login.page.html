@@ -3,8 +3,16 @@
     <ion-back-button></ion-back-button>
     <ion-button><ion-icon name="arrow-back-sharp"></ion-icon>Back</ion-button>
   </ion-buttons>
+  
+  <div class="product_list" *ngFor="let items of profile">
+    <h1 style="background-color: aqua; color: black;">{{items.Name}}</h1>
+</div>
 </ion-toolbar>
 <div class="contain">
+
+
+
+
 
   <div class="collection">
     <ion-text id="text" class="ion-padding">Login</ion-text>
@@ -29,7 +37,7 @@
         <div class="mathoud" (click)="facebookLogin()">
           <ion-icon slot="center" name="logo-facebook" size="large" color="primary"></ion-icon>
         </div>
-        <div class="mathoud" (click)=" createAcc()">
+        <div class="mathoud" (click)=" phoneLogin()">
           <ion-icon slot="center" name="call" size="large"></ion-icon>
         </div>
       </div>

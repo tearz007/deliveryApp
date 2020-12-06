@@ -1,29 +1,31 @@
 <ion-content>
   <div class="container ">
     <div class="header ion-padding">
-      <ion-buttons (click)="toLogin() "  class="log_btn">
+      <ion-buttons (click)="toLogin() " class="log_btn">
         <ion-button>
           <ion-icon size="large" name="log-in-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
 
       <ion-buttons class="menu_btn">
-        <ion-menu-button >
+        <ion-menu-button>
           <ion-icon size="large" name="menu-sharp"></ion-icon>
         </ion-menu-button>
       </ion-buttons>
 
     </div>
-    
+
     <div class="collect ion-padding">
       <div class="title">
         <ion-label>Categories...</ion-label>
       </div>
+
       <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slideOpts">
-        <ion-slide>
-          <div class="item" (click)="presentModal()">
+
+        <ion-slide *ngFor="let data of imgs">
+          <div class="item" (click)="presentModal(data.name)">
             <div class="img">
-              <img src="../../../../assets/grinder/2.jfif">
+              <img [src]=data.image>
             </div>
 
           </div>
@@ -32,43 +34,9 @@
           </div>
 
         </ion-slide>
-        <ion-slide>
-          <div class="item">
-            <div class="img">
-              <img src="../../../../assets/lighter/1.jpeg">
-            </div>
-          </div>
-          <div class="infor">
-
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="item">
-            <div class="img">
-              <img src="../../../../assets/rolling/OIP.jfif">
-            </div>
-          </div>
-          <div class="infor">
-
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="item">
-            <div class="img">
-              <img src="../../../../assets/one h/4.jpg">
-            </div>
-          </div>
-          <div class="infor">
-
-          </div>
-        </ion-slide>
 
       </ion-slides>
-
     </div>
-
   </div>
 </ion-content>
 
@@ -125,3 +93,39 @@
   </div>
 
 </ion-content>-->
+
+
+<!--  
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/lighter/1.jpeg">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/rolling/OIP.jfif">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="item">
+            <div class="img">
+              <img src="../../../../assets/one h/4.jpg">
+            </div>
+          </div>
+          <div class="infor">
+
+          </div>
+        </ion-slide>
+-->

@@ -57,12 +57,13 @@ export class LoginService {
 
 
 
-  /*-----------Facebook login----------------
+  /*-----------Facebook login----------------*/
   facebookLogin() {
-    var provider = new auth.FacebookAuthProvider();
+    var provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
     return this.auth.signInWithPopup(provider);
   }
-  -----------Facebook End----------------*/
+ /* -----------Facebook End----------------*/
 
   logout() {
     return this.auth.signOut();

@@ -12,7 +12,7 @@ import firebase from 'firebase/app'
 })
 export class UserInforService {
 
-
+arry=[]
   user$: Observable<user>
   constructor(private afs: AngularFirestore, private route: Router) {
 
@@ -20,43 +20,74 @@ export class UserInforService {
 
   currentUser() {
     var user = firebase.auth().currentUser;
-    var name, email, photoUrl, uid;
+    var  uid;
 
-    if (user != null) {
-      name = user.displayName;
-      email = user.email;
-      uid = user.uid;
-      console.log(email)
-      console.log(uid)
-    }
+     if(user!=null){
+       uid=user.uid
+     }
+    this.afs.collection(uid).snapshotChanges().subscribe(firebaseData=>{
+            
+      firebaseData.forEach(a => {
+        this.arry=[]
+        let data:any=a.payload.doc.data();
+        data.id=a.payload.doc.id;
+        this.arry.push(data)
+      });
+
+      this.arry.forEach(a=> {
+        console.log(a)
+        //console.log(a.id)
+      });
+    })
   }
 
-  
 
   createUser() {
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, pass, uid;
 
-   this.afs.collection(uid).doc(uid).get().subscribe(data=>{
-     data.id
-   })
-
     if (user != null) {
       name = user.displayName;
       email = user.email;
       uid = user.uid;
-     // console.log(email)
-     /// console.log(uid)
-    }
 
+    }
     this.afs.collection(uid).doc(uid).set({
-      userName: email,
+      Email: email,
       id: uid,
+      Name: name,
     }).then(function () {
-        console.log("Document successfully written!");
-      })
+      console.log("Document successfully written!");
+    })
       .catch(function (error) {
         console.error("Error writing document: ", error);
       });
+
+   /**/
   }
+
+
 }
+/*this.afs.collection(uid).doc().set({
+          Email: email,
+          idL: uid,
+          Name: name,
+        }).then(function () {
+          console.log("Document successfully written!");
+        })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
+          
+          
+          
+         
+          
+              this.afs.collection(uid).doc(a.id).get().subscribe(f => {
+          if (f.exists) {
+            console.log("Document data:", f.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        }); */

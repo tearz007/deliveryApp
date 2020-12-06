@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/service/login/login.service';
 import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
 import { user } from 'src/models/user';
+import firebase from 'firebase/app'
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit {
 
   username
   password
-
+  profile=[]
   user$: Observable<user>
   constructor(private route: Router, public loadingController: LoadingController, private login: LoginService, private userInfor: UserInforService) { }
   ngOnInit() {
@@ -43,19 +44,29 @@ export class LoginPage implements OnInit {
   googleLogin() {
     this.login.gmailLogin().then(() => {
       alert("signed in with google")
+      this.userInfor.createUser()
     }).catch(e => {
       alert(e.message)
     })
   }
 
 
-
   facebookLogin() {
-    alert("facebook");
+    this.login.facebookLogin().then(() => {
+      alert("facebook sign in")
+      this.userInfor.createUser()
+    }).catch(e => {
+      alert(e.message)
+    })
   }
   phoneLogin() {
-    alert("phone");
+    //this.userInfor.currentUser()
+    this.userInfor.currentUser()
+    // this.profile.push(this.userInfor.arry)
   }
+ 
+  
+ 
 
   toRegistration() {
     this.route.navigate(['register'])

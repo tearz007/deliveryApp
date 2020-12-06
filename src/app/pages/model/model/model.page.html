@@ -1,38 +1,178 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="medium">
     <ion-buttons (click)="dismiss()" slot="start">
       <ion-button>
         <ion-icon name="arrow-back-sharp"></ion-icon>Back
       </ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-badge slot="end">1</ion-badge>
+        <ion-icon size=large name="cart-outline"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="medium">
+
   <div class="collect ion-padding">
-    <div class="item">
+
+    <div class="item ion-padding" *ngFor="let item of fireData">
+
+      <div class="img">
+        <!-- <img src="../../../../assets/grinder/2.jfif"> -->
+        <img [src]=item.image>
+      </div>
+      <div class="infor">
+        <div class="detail">
+          <div class="name">
+            <ion-label>Grinder</ion-label>
+          </div>
+          <div class="rate">
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price">
+            <ion-label>R 16</ion-label>
+          </div>
+        </div>
+        <div class="btn">
+          <ion-buttons>
+            <ion-button fill="outline" shape="round">
+              <ion-icon name="cart-outline"></ion-icon>
+              ADD
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
 
     </div>
-    <div class="item">
 
-    </div>
-    <div class="item">
 
-    </div>
 
-    <div class="item">
 
-    </div>
-    <div class="item">
 
-    </div>
 
-    <div class="item">
 
-    </div>
-
-    
 
   </div>
-
 </ion-content>
+
+
+<!--
+     <div class="item ion-padding">
+      <div class="img">
+        <img src="../../../../assets/grinder/4.webp">
+      </div>
+
+      <div class="infor">
+        <div class="detail">
+          <div class="name">
+            <ion-label>Lighter</ion-label>
+          </div>
+          <div class="rate">
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price">
+            <ion-label>R 16</ion-label>
+          </div>
+        </div>
+        <div class="btn">
+          <ion-buttons>
+            <ion-button fill="outline" shape="round">
+              <ion-icon name="cart-outline"></ion-icon>
+              ADD
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="item ion-padding">
+      <div class="img">
+        <img src="../../../../assets/grinder/OIP (1).jfif">
+      </div>
+
+      <div class="infor">
+        <div class="detail">
+          <div class="name">
+            <ion-label>Lighter</ion-label>
+          </div>
+          <div class="rate">
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price">
+            <ion-label>R 16</ion-label>
+          </div>
+        </div>
+        <div class="btn">
+          <ion-buttons>
+            <ion-button fill="outline" shape="round">
+              <ion-icon name="cart-outline"></ion-icon>
+              ADD
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+
+<div class="item ion-padding">
+      <div class="img">
+        <img src="../../../../assets/grinder/5.jpg">
+      </div>
+
+      <div class="infor">
+        <div class="detail">
+          <div class="name">
+            <ion-label>Lighter</ion-label>
+          </div>
+          <div class="rate">
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price">
+            <ion-label>R 16</ion-label>
+          </div>
+        </div>
+        <div class="btn">
+          <ion-buttons>
+            <ion-button fill="outline" shape="round">
+              <ion-icon name="cart-outline"></ion-icon>
+              ADD
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+  -->

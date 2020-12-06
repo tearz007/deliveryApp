@@ -1,41 +1,152 @@
-<ion-toolbar>
-  <div class="header">
-  
-  </div>    
-</ion-toolbar>
-<ion-content>
-<div class="content ion-padding">
-
-  <div class="text ">
-    <h2>Categories</h2>
-  </div>
-  <div class="catogory">
-   
-      <ion-slides >
-        <ion-slide startAutoplay page="true">
-          <!-- <div class="img">
-            <img src="../../../../assets/img/img1.jpg">
-          </div> -->
-        </ion-slide>
-        <ion-slide>
-          <!-- <div class="img">
-            <img src="../../../../assets/img/img2.jpg">
-          </div> -->
-        </ion-slide>
-        <ion-slide>
-          <!-- <div class="img">
-            <img src="../../../../assets/img/img3.jpg">
-          </div> -->
-        </ion-slide>
-      </ion-slides>
+<ion-header color="medium">
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
-     
+<ion-content color="medium" fullscreen=false>
+  <ion-grid class="ion-padding" ion-grid-width=300>
 
-      
-   
-  </div>
-  
-</div>
-  
+    <ion-row>
+      <ion-col size="12" size-md>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+        <div class="infor">
+          <div class="detail">
+            <div class="name">
+              <ion-label>Grinder</ion-label>
+            </div>
+
+            <div class="price">
+              <ion-label>R 16</ion-label>
+            </div>
+          </div>
+
+        </div>
+        <div class="add">
+          <ion-icon size="large" name="caret-back-sharp"></ion-icon>
+          <ion-badge size="large" color="light">99</ion-badge>
+          <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
+        </div>
+
+        <div class="delete">
+          <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+
+        <div class="img">
+          <img src="../../../../assets/lighter/1.jpeg">
+        </div>
+        <div class="infor">
+          <div class="detail">
+            <div class="name">
+              <ion-label>Grinder</ion-label>
+            </div>
+            <div class="price">
+              <ion-label>R 16</ion-label>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="add">
+          <ion-icon size="large" name="caret-back-sharp"></ion-icon>
+          <ion-badge color="light">99</ion-badge>
+          <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
+        </div>
+
+        <div class="delete">
+          <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img src="../../../../assets/grinder/2.jfif">
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <div class="price">
+      <ion-label>Total Price</ion-label>
+      <br>
+      <ion-label>R10</ion-label>
+    </div>
+    <div class="btn ">
+      <ion-buttons class="ion-padding">
+        <ion-button size="large" fill="outline" shape="round">CHECKOUT</ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-footer>
