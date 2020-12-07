@@ -35,8 +35,13 @@
           <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
         </div>
 
-        <div class="delete">
-          <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
+        <div class="delete" >
+          <ion-buttons (click)="deleteItem(item.id)">
+            <ion-button>
+              <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          
         </div>
 
       </ion-col>
