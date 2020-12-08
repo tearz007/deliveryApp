@@ -17,30 +17,23 @@ export class MapPage implements OnInit {
   map;
   turf;
   directions
-
-  checkAddress = "";
-
-  delivery = false;
-  collect = true;
-  coordinates: any;
-  list: any;
-  selectedAddress: string = "";
-  lat;
-  lng;
-
-
   addresses = [];
 
-  constructor(private mapServ: MapService) { }
+  lng
+  lat
+
+  constructor(private mapServ: MapService) { 
+    this.lng = this.mapServ.lng;
+    this.lat = this.mapServ.lat;
+  }
 
   ngOnInit() {
-
+  
     this.mapFunctions();
 
     this.mapFunction2();
-    this.mapDirection()
-    //  this.map.on('click', this.onMapClick);
-    this.map.on('load', this.vidf);
+    this.mapDirection();
+      
     // this.mapDirection()
   }
 
@@ -95,51 +88,20 @@ export class MapPage implements OnInit {
       congestion: true,
       alternatives: true,
       routePadding: 25,
-      zoom:15
+      zoom: 15,
     });
-    this.map.addControl(this.directions);
-
-    this.directions.setOrigin([28.61502, -26.45746]);
-    this.directions.setDestination([29.61502, -27.65746])
-  }
-
-  vidf() {
     
+    this.map.addControl(this.directions);
   }
 
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapServ.search_word(searchTerm)
-        .subscribe((features: Feature[]) => {
-          this.coordinates = features.map(feat => feat.geometry)
-          this.addresses = features.map(feat => feat.place_name)
-          this.list = features;
-          console.log(this.list)
-        });
-    } else {
-      this.addresses = [];
-    }
+  test(){
+    console.log(this.lng, this.lat)
+    this.directions.setOrigin([this.lng, this.lat]);
+    this.directions.setDestination([29.61502, -27.65746])
+    this.map.addControl(this.directions);
   }
 
-  addressCheck(event) {
-    this.checkAddress = event.target.value;
-    console.log("info", this.checkAddress);
-  }
 
-  onSelect(address, i) {
-    this.selectedAddress = address;
-    //  selectedcoodinates=
-    console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
-    console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
-    this.lng = JSON.stringify(this.list[i].geometry.coordinates[0])
-    this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
-    // this.user.coords = [this.lng,this.lat];
-    console.log("index =" + i)
-    console.log(this.selectedAddress)
-    // this.user.address = this.selectedAddress;
-    this.addresses = [];
-  }
 
 
 }

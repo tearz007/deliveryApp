@@ -3,21 +3,38 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title></ion-title>
+    <ion-title>Delivery Infor</ion-title>
+    <ion-buttons (click)="gotoMap()" slot="end">
+      <ion-button>
+        NEXT
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="log">
-    <ion-input clearInput type="Name" [(ngModel)]="username" placeholder="email"></ion-input>
-  </div>
-  <div class="log">
-    <ion-input clearInput type="Phone number" [(ngModel)]="password" placeholder="password"></ion-input>
-  </div>
-  <div class="log">
-    <ion-input clearInput type="Locaton" [(ngModel)]="username" placeholder="email"></ion-input>
-  </div>
+  <div class="collection">
 
+    <div class="log">
+      <ion-input clearInput type="type" [(ngModel)]="username" placeholder="enter name"></ion-input>
+    </div>
+    <div class="log">
+      <ion-input clearInput type="number" [(ngModel)]="password" placeholder="enter Phone number"></ion-input>
+    </div>
+    <div class="log">
+      <ion-input clearInput type="text" (input)="search($event)" (change)="addressCheck($event)"
+        placeholder="Enter your location" [value]="selectedAddress"></ion-input>
+    </div>
+
+    <!-- <ion-searchbar (input)="search($event)" (change)="addressCheck($event)" placeholder="Enter your location"
+      [value]="selectedAddress"></ion-searchbar> -->
+
+    <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)">
+      {{ address}}
+
+    </ion-item>
+
+  </div>
 
 </ion-content>

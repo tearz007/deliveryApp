@@ -9,9 +9,16 @@ import { DisplayService } from 'src/app/service/display/display.service';
 })
 export class CardPage implements OnInit {
   cart = this.inforService.cart;
-  constructor(private inforService: DisplayService,private route:Router) { }
   firebaseCard = []
+  totalPrice=0
+
+
+  constructor(private inforService: DisplayService, private route: Router) { 
+    
+  }
+  
   ngOnInit() {
+    
 
     this.cart.forEach(a => {
       this.inforService.getCart(a.id, a.name).subscribe(firebaseData => {
@@ -30,10 +37,16 @@ export class CardPage implements OnInit {
           else {
             // console.log("item Do exist");
           }
+
+          
         })
+       console.log(this.firebaseCard.length)
+        for (let i = 0; i < this.firebaseCard.length; i++) {
+         this.totalPrice=this.totalPrice+this.firebaseCard[i].price
+        }
+        console.log(this.totalPrice)
       })
 
-      // console.log(this.firebaseCard)
     });
   }
 
@@ -47,8 +60,9 @@ export class CardPage implements OnInit {
     }
   }
 
-  gotoLocation(){
+  gotoLocation() {
     this.route.navigate(['location'])
   }
+
 
 }

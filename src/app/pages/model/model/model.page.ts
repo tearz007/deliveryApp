@@ -16,10 +16,12 @@ export class ModelPage implements OnInit {
   collect: string
   product$: Observable<Products>
   cart = this.inforService.cart;
+  cartLength
 
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
   ngOnInit() {
+    this.cartLength=this.inforService.cart.length;
     this.collect = this.inforService.collection
     this.inforService.getsub(this.collect).subscribe(firebaseData => {
       this.fireData = []
@@ -41,7 +43,7 @@ export class ModelPage implements OnInit {
 
   addToCart(_id) {
     let product = { id:_id, name: this.collect }
-
+    
     var existItem = this.cart.find(x => x.id == _id);
 
     if (existItem) {
@@ -49,6 +51,7 @@ export class ModelPage implements OnInit {
     }
     else {
       this.inforService.setCart(product);
+      this.cartLength=this.inforService.cart.length;
     }
 
   }
@@ -61,6 +64,9 @@ export class ModelPage implements OnInit {
   }
 
 }
+
+
+
 
 
 /*if (this.cart.length > 0) {

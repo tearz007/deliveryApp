@@ -8,7 +8,7 @@
 
     <ion-buttons  (click)="gotoCart()" slot="end">
       <ion-button>
-        <ion-badge slot="end">1</ion-badge>
+        <ion-badge slot="end">{{cartLength}}</ion-badge>
         <ion-icon size=large name="cart-outline"> </ion-icon>
       </ion-button>
     </ion-buttons>
@@ -27,7 +27,7 @@
       <div class="infor">
         <div class="detail">
           <div class="name">
-            <ion-label>Grinder</ion-label>
+            <ion-label>{{item.name}}</ion-label>
           </div>
           <div class="rate">
             <ion-icon name="star-outline"></ion-icon>
@@ -37,7 +37,7 @@
             <ion-icon name="star-outline"></ion-icon>
           </div>
           <div class="price">
-            <ion-label>R 16</ion-label>
+            <ion-label>{{'R'+item.price}}</ion-label>
           </div>
         </div>
         <div class="btn" (click)="addToCart(item.id)" >

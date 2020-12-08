@@ -23,7 +23,8 @@ export interface Geometry {
 export class MapService {
   
   key = 'pk.eyJ1IjoidGVhcnoiLCJhIjoiY2toa2dqcmM3MWIwNjJ5cDlqazhyYzdteiJ9.jYlNVUpq4tkE1jva-mtyqg';
-
+  lat
+  lng
   constructor(private http: HttpClient) { }
 
 
@@ -36,4 +37,10 @@ export class MapService {
         return res.features;
       }));
   }
+
+  setCoodination(_lng,_lat){
+    this.lng=_lng;
+    this.lat=_lat
+  }
+
 }

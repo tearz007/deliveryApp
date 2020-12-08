@@ -13,6 +13,8 @@ export class DisplayService {
   cart = []
   product$: Products;
 
+  
+
   constructor(private afs: AngularFirestore, private route:Router) { }
 
   getImgs() {
@@ -42,16 +44,14 @@ export class DisplayService {
     }
     let data = { id: this.product$.id, name: this.product$.name }
     this.cart.push(data)
- 
   }
-
 
   reloadComponent(routes) {
     this.route.routeReuseStrategy.shouldReuseRoute = () => false;
     this.route.onSameUrlNavigation = 'reload';
     this.route.navigate([routes]);
   }
-
+  
 }
 
 

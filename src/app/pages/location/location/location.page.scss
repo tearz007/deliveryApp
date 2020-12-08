@@ -1,0 +1,16 @@
+.collection {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 50vh;
+
+    .log {
+
+        margin-top: 10%;
+        box-shadow: 2px 2px 2px 2px;
+        border-radius: 5px;
+    }
+
+}
