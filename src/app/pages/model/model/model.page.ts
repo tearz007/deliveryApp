@@ -50,8 +50,7 @@ export class ModelPage implements OnInit {
             console.log('id exists')
             
           } else {
-            this.inforService.setCart(product)
-            
+            this.inforService.setCart(product)  
           }
         })
       });
