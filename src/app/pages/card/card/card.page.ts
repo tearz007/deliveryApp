@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DisplayService } from 'src/app/service/display/display.service';
 
 @Component({
   selector: 'app-card',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardPage implements OnInit {
 
-  constructor() { }
-
+  constructor(private inforService: DisplayService) { }
+  firebaseCard = []
   ngOnInit() {
+    /* this.inforService.getCart().subscribe(data => {
+       this.firebaseCard.push(data.data())
+       // console.log(data.data())
+     })*/
+    let cart = this.inforService.cart; 
+    cart.forEach(a => {
+      
+      this.firebaseCard.forEach(i => {
+        if (a.id===i.id) {
+        console.log('same id')
+        }
+      });
+      this.inforService.getCart(a.id,a.name).subscribe(data => {
+        this.firebaseCard.push(data.data())
+      })
+    });
   }
 
 }

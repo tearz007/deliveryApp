@@ -25,7 +25,7 @@ arry=[]
      if(user!=null){
        uid=user.uid
      }
-    this.afs.collection(uid).snapshotChanges().subscribe(firebaseData=>{
+    this.afs.collection('user').snapshotChanges().subscribe(firebaseData=>{
             
       firebaseData.forEach(a => {
         this.arry=[]
@@ -52,7 +52,7 @@ arry=[]
       uid = user.uid;
 
     }
-    this.afs.collection(uid).doc(uid).set({
+    this.afs.collection('user').doc(uid).set({
       Email: email,
       id: uid,
       Name: name,

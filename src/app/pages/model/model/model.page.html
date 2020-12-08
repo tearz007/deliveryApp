@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
+    <ion-buttons  (click)="gotoCart()" slot="end">
       <ion-button>
         <ion-badge slot="end">1</ion-badge>
         <ion-icon size=large name="cart-outline"> </ion-icon>
@@ -22,7 +22,6 @@
     <div class="item ion-padding" *ngFor="let item of fireData">
 
       <div class="img">
-        <!-- <img src="../../../../assets/grinder/2.jfif"> -->
         <img [src]=item.image>
       </div>
       <div class="infor">
@@ -41,7 +40,7 @@
             <ion-label>R 16</ion-label>
           </div>
         </div>
-        <div class="btn">
+        <div class="btn" (click)="addCart(item.id)" >
           <ion-buttons>
             <ion-button fill="outline" shape="round">
               <ion-icon name="cart-outline"></ion-icon>
@@ -52,14 +51,6 @@
       </div>
 
     </div>
-
-
-
-
-
-
-
-
   </div>
 </ion-content>
 

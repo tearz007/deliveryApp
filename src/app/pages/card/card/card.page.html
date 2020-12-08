@@ -11,10 +11,11 @@
 <ion-content color="medium" fullscreen=false>
   <ion-grid class="ion-padding" ion-grid-width=300>
 
-    <ion-row>
+    <ion-row *ngFor="let item of firebaseCard">
       <ion-col size="12" size-md>
         <div class="img">
-          <img src="../../../../assets/grinder/2.jfif">
+          <!-- <img src="../../../../assets/grinder/2.jfif"> -->
+          <img [src]=item.image>
         </div>
         <div class="infor">
           <div class="detail">
@@ -38,23 +39,35 @@
           <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </ion-col>
     </ion-row>
 
+
+  </ion-grid> 
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <div class="price">
+      <ion-label>Total Price</ion-label>
+      <br>
+      <ion-label>R10</ion-label>
+    </div>
+    <div class="btn ">
+      <ion-buttons class="ion-padding">
+        <ion-button size="large" fill="outline" shape="round">CHECKOUT</ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+<!-- 
     <ion-row>
       <ion-col>
 
@@ -129,24 +142,4 @@
           <img src="../../../../assets/grinder/2.jfif">
         </div>
       </ion-col>
-    </ion-row>
-
-  </ion-grid>
-
-</ion-content>
-
-
-<ion-footer>
-  <ion-toolbar color="medium">
-    <div class="price">
-      <ion-label>Total Price</ion-label>
-      <br>
-      <ion-label>R10</ion-label>
-    </div>
-    <div class="btn ">
-      <ion-buttons class="ion-padding">
-        <ion-button size="large" fill="outline" shape="round">CHECKOUT</ion-button>
-      </ion-buttons>
-    </div>
-  </ion-toolbar>
-</ion-footer>
+    </ion-row> -->

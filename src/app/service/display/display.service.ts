@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Products } from 'src/models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisplayService {
 
-  collection
+  collection: any
+  cart=[]
+  product$: Products;
+
   constructor(private afs: AngularFirestore) { }
 
   getImgs() {
@@ -16,14 +21,50 @@ export class DisplayService {
     return this.afs.collection(collec).snapshotChanges();
   }
 
+  getsub(collec) {
+    return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
+  }
+
+  getCart(_id,name) {
+    return this.afs.collection('products').doc(name).collection(name).doc(_id).get()
+  }
+
   setCollection(collec) {
     this.collection = collec
+  }
+
+  setCart(collec) {
+    this.product$ = {
+      id: collec.id,
+      name: collec.name
+    }
+    let data={id:this.product$.id,name:this.product$.name}
+    this.cart.push(data)
+    console.log(this.product$.id)
+    console.log(this.product$.name)
+
   }
 
 }
 
 
-/*   var  uid;
+
+
+
+
+
+/*
+ setCart(collec){
+    this.product$.subscribe(data=>{
+      data.id=collec.id;
+      data.name=collec.name
+    })
+  }
+
+
+
+
+var  uid;
 
     //  if(user!=null){
     //    uid=user.uid
