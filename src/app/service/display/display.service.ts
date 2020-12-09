@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Products } from 'src/models/product';
 
@@ -9,10 +10,10 @@ import { Products } from 'src/models/product';
 export class DisplayService {
 
   collection: any
-  cart=[]
+  cart = []
   product$: Products;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private route:Router) { }
 
   getImgs() {
     return this.afs.collection('categories').snapshotChanges();
@@ -25,8 +26,9 @@ export class DisplayService {
     return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
   }
 
-  getCart(_id,name) {
-    return this.afs.collection('products').doc(name).collection(name).doc(_id).get()
+  getCart(_id, name) {
+    // return this.afs.collection('products').doc(name).collection(name).doc(_id).get()
+    return this.afs.collection('products').doc(name).collection(name).snapshotChanges()
   }
 
   setCollection(collec) {
@@ -38,11 +40,16 @@ export class DisplayService {
       id: collec.id,
       name: collec.name
     }
-    let data={id:this.product$.id,name:this.product$.name}
+    let data = { id: this.product$.id, name: this.product$.name }
     this.cart.push(data)
-    console.log(this.product$.id)
-    console.log(this.product$.name)
+ 
+  }
 
+
+  reloadComponent(routes) {
+    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.route.onSameUrlNavigation = 'reload';
+    this.route.navigate([routes]);
   }
 
 }

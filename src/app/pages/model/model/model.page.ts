@@ -15,7 +15,7 @@ export class ModelPage implements OnInit {
   fireData = []
   collect: string
   product$: Observable<Products>
-
+  cart = this.inforService.cart;
 
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
@@ -39,29 +39,18 @@ export class ModelPage implements OnInit {
     });
   }
 
-  addCart(_id) {
-    let product = { id: _id, name: this.collect }
+  addToCart(_id) {
+    let product = { id:_id, name: this.collect }
 
-    let cart = this.inforService.cart;
-    if (cart.length > 0) {
-      cart.forEach(a => {
-        this.inforService.getCart(a.id, a.name).subscribe(data => {
-          if (data.id === _id) {
-            console.log('id exists')
-            
-          } else {
-            this.inforService.setCart(product)  
-          }
-        })
-      });
-    } 
+    var existItem = this.cart.find(x => x.id == _id);
+
+    if (existItem) {
+      console.log("item already exist");
+    }
     else {
-      this.inforService.setCart(product)
-      
+      this.inforService.setCart(product);
     }
 
-
-    // this.inforService.setCart(product)
   }
 
   gotoCart() {
@@ -69,7 +58,23 @@ export class ModelPage implements OnInit {
       'dismissed': true
     });
     this.route.navigate(['tap/cart'])
-
   }
 
 }
+
+
+/*if (this.cart.length > 0) {
+
+      console.log(this.cart)
+      this.cart.forEach(a => {
+        this.inforService.getCart(a.id, a.name).subscribe(data => {
+
+        })
+      });
+    }
+    else {
+        console.log('id added in < 0')
+        this.inforService.setCart(product)
+        console.log('added')
+    }
+    // this.inforService.setCart(product) */
