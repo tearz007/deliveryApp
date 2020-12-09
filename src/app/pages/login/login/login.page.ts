@@ -24,18 +24,11 @@ export class LoginPage implements OnInit {
 
   }
 
-  createAcc() {
-    this.login.createAcc(this.username, this.password).then(() => {
-      alert("Account is created")
-    }).catch(e => {
-      alert(e.message)
-    })
-  }
-
+ 
   emailLogin() {
     this.login.userLogin(this.username, this.password).then(() => {
       alert("signed in")
-      this.userInfor.createCarrentUser()
+      this.route.navigate(['tap/start-page'])
     }).catch(e => {
       alert(e.message)
     })
@@ -60,9 +53,7 @@ export class LoginPage implements OnInit {
     })
   }
   phoneLogin() {
-    //this.userInfor.currentUser()
-    this.userInfor.currentUser()
-    // this.profile.push(this.userInfor.arry)
+   
   }
  
   

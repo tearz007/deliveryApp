@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
+import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +17,7 @@ export class CardPage implements OnInit {
   totalPrice = 0;
   quntity = 1
 
-  constructor(private inforService: DisplayService, private route: Router) { }
+  constructor(private afs: AngularFirestore, private inforService: DisplayService, private userInfor: UserInforService, private route: Router, public alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -33,7 +36,6 @@ export class CardPage implements OnInit {
           var existItem = this.cart.find(x => x.id == data.id);
 
           if (existItem) {
-            // to temp
             this.temp.push(data)
           }
           else {
@@ -41,20 +43,20 @@ export class CardPage implements OnInit {
           }
 
         })
-        //to temp
+
         this.temp.forEach(a => {
           var existItem = this.firebaseCard.find(x => x.id == a.id);
           if (existItem) {
 
           }
           else {
-            this.totalPrice=0
+            this.totalPrice = 0
             // console.log("item Do exist");
             this.firebaseCard.push(a)
             //to fire
             console.log('pushed')
             this.firebaseCard.forEach(a => {
-              this.totalPrice=this.totalPrice+a.price
+              this.totalPrice = this.totalPrice + a.price
               // console.log(this.totalPrice)
             });
           }
@@ -65,9 +67,9 @@ export class CardPage implements OnInit {
     });
   }
 
-  getPrice(){
+  getPrice() {
     this.firebaseCard.forEach(a => {
-      this.totalPrice=this.totalPrice+a.price
+      this.totalPrice = this.totalPrice + a.price
       console.log(this.totalPrice)
     });
   }
@@ -76,20 +78,20 @@ export class CardPage implements OnInit {
 
     for (let i = 0; i < this.inforService.cart.length; i++) {
       if (id == this.inforService.cart[i].id) {
-        this.totalPrice=this.totalPrice-this.firebaseCard[i].price
+        this.totalPrice = this.totalPrice - this.firebaseCard[i].price
         this.firebaseCard.splice(i, 1)
         this.inforService.cart.splice(i, 1)
       }
     }
   }
 
-  add(id,quntity) {
+  add(id, quntity) {
 
     var existItem = this.firebaseCard.find(x => x.id == id);
 
     if (existItem) {
-       quntity=quntity+1
-       console.log(quntity)
+      quntity = quntity + 1
+      console.log(quntity)
     }
     else {
 
@@ -102,6 +104,69 @@ export class CardPage implements OnInit {
       this.quntity = this.quntity - 1
     }
   }
+
+
+  async presentAlertConfirm() {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Checkout',
+      message: 'Are you sure you want to Checkout totalprice is R' + this.totalPrice,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            //this.route.navigate(['location'])
+            this.sendOrder()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+  sendOrder() {
+    var id, name, image, price, quantity
+
+
+    for (let i = 0; i < this.firebaseCard.length; i++) {
+      this.afs.collection('order').doc(this.userInfor.currentUser()).set({
+
+        id: this.firebaseCard[i].id,
+        name: this.firebaseCard[i].name,
+        image: this.firebaseCard[i].image,
+        price: this.firebaseCard[i].price,
+
+
+      }).then(function () {
+        console.log("Order send!");
+      })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+
+    /*
+    this.afs.collection('order').doc(this.userInfor.currentUser()).set({
+     
+    }).then(function () {
+      console.log("Order send!");
+    })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });*/
+  }
+
 
   gotoLocation() {
     this.route.navigate(['location'])
