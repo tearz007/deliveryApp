@@ -1,9 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>location</ion-title>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="log">
+    <ion-input clearInput type="Name" [(ngModel)]="username" placeholder="email"></ion-input>
+  </div>
+  <div class="log">
+    <ion-input clearInput type="Phone number" [(ngModel)]="password" placeholder="password"></ion-input>
+  </div>
+  <div class="log">
+    <ion-input clearInput type="Locaton" [(ngModel)]="username" placeholder="email"></ion-input>
+  </div>
+
 
 </ion-content>

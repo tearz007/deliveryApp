@@ -16,6 +16,7 @@ export class MapPage implements OnInit {
   /**/
   map;
   turf;
+  directions
 
   checkAddress = "";
 
@@ -37,14 +38,10 @@ export class MapPage implements OnInit {
     this.mapFunctions();
 
     this.mapFunction2();
-
+    this.mapDirection()
     //  this.map.on('click', this.onMapClick);
-    this.map.on('load', this.marker);
-    this. mapDirection()
-  }
-
-  marker() {
-
+    this.map.on('load', this.vidf);
+    // this.mapDirection()
   }
 
   mapFunctions() {
@@ -54,7 +51,7 @@ export class MapPage implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [28.61502, -26.45746],
       //center:[-77.020945, 38.878241],  
-      zoom: 5 // starting zoom
+      zoom: 10 // starting zoom
     });
   }
 
@@ -86,70 +83,63 @@ export class MapPage implements OnInit {
   }
 
   mapDirection() {
-    this.map.addControl(
-      new MapboxDirections({
-        accessToken: mapboxgl.accessToken
 
-      }),
-      'top-left'
-    );
-  }
-
-  viewD() {
-
-    this.map.on('load', function () {
-      // Insert the layer beneath any symbol layer.
-      var layers = this.service.map.getStyle().layers;
-
-      var labelLayerId;
-      for (var i = 0; i < layers.length; i++) {
-        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-          labelLayerId = layers[i].id;
-          break;
-        }
-      }
-      this.service.map.addLayer(
-        {
-          'id': '3d-buildings',
-          'source': 'composite',
-          'source-layer': 'building',
-          'filter': ['==', 'extrude', 'true'],
-          'type': 'fill-extrusion',
-          'minzoom': 15,
-          'paint': {
-            'fill-extrusion-color': '#aaa',
-
-            // use an 'interpolate' expression to add a smooth transition effect to the
-            // buildings as the user zooms in
-            'fill-extrusion-height': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              15,
-              0,
-              15.05,
-              ['get', 'height']
-            ],
-            'fill-extrusion-base': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              15,
-              0,
-              15.05,
-              ['get', 'min_height']
-            ],
-            'fill-extrusion-opacity': 0.6
-          }
-        },
-        labelLayerId
-      );
+    this.directions = new MapboxDirections({
+      accessToken: this.mapServ.key,
+      unit: 'metric',
+      profile: 'mapbox/cycling',
+      mapboxgl,
+      marker: true,
+      collapsed: true,
+      controls: { inputs: false, instructions: false, profileSwitcher: true },
+      congestion: true,
+      alternatives: true,
+      routePadding: 25,
+      zoom:15
     });
+    this.map.addControl(this.directions);
+
+    this.directions.setOrigin([28.61502, -26.45746]);
+    this.directions.setDestination([29.61502, -27.65746])
   }
 
+  vidf() {
+    
+  }
 
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapServ.search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          this.coordinates = features.map(feat => feat.geometry)
+          this.addresses = features.map(feat => feat.place_name)
+          this.list = features;
+          console.log(this.list)
+        });
+    } else {
+      this.addresses = [];
+    }
+  }
 
-  //  .setLngLat([28.61502, -26.45746])
+  addressCheck(event) {
+    this.checkAddress = event.target.value;
+    console.log("info", this.checkAddress);
+  }
+
+  onSelect(address, i) {
+    this.selectedAddress = address;
+    //  selectedcoodinates=
+    console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
+    console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
+    this.lng = JSON.stringify(this.list[i].geometry.coordinates[0])
+    this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
+    // this.user.coords = [this.lng,this.lat];
+    console.log("index =" + i)
+    console.log(this.selectedAddress)
+    // this.user.address = this.selectedAddress;
+    this.addresses = [];
+  }
 
 
 }

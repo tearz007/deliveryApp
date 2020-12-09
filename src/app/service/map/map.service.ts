@@ -27,7 +27,7 @@ export class MapService {
   constructor(private http: HttpClient) { }
 
 
-  /*search_word(query: string) {
+  search_word(query: string) {
 
     const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
     // tslint:disable-next-line:max-line-length
@@ -35,5 +35,5 @@ export class MapService {
       .pipe(map((res: MapboxOutput) => {
         return res.features;
       }));
-  }*/
+  }
 }

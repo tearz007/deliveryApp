@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DisplayService } from 'src/app/service/display/display.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { DisplayService } from 'src/app/service/display/display.service';
 })
 export class CardPage implements OnInit {
   cart = this.inforService.cart;
-  constructor(private inforService: DisplayService) { }
+  constructor(private inforService: DisplayService,private route:Router) { }
   firebaseCard = []
   ngOnInit() {
 
@@ -46,8 +47,8 @@ export class CardPage implements OnInit {
     }
   }
 
-  gotoMap(){
-    console.log("map")
+  gotoLocation(){
+    this.route.navigate(['location'])
   }
 
 }
