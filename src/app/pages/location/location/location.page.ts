@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { DisplayService } from 'src/app/service/display/display.service';
 import { Feature, MapService } from 'src/app/service/map/map.service';
+import { OrderService } from 'src/app/service/order/order.service';
+import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
 
 @Component({
   selector: 'app-location',
@@ -23,10 +27,19 @@ export class LocationPage implements OnInit {
 
   addresses = [];
 
-  constructor(private mapServ: MapService,private route:Router) { 
+  firebaseCard = []
+
+  constructor(private mapServ: MapService, private route: Router,
+    private displayService: DisplayService,
+    private userInfor: UserInforService,
+    private afs: AngularFirestore,
+    private orderService: OrderService) {
+    this.firebaseCard.push(this.displayService.cart)
   }
 
   ngOnInit() {
+    
+
   }
 
   search(event: any) {
@@ -42,7 +55,7 @@ export class LocationPage implements OnInit {
     } else {
       this.addresses = [];
     }
-    
+
   }
 
   addressCheck(event) {
@@ -62,11 +75,40 @@ export class LocationPage implements OnInit {
     console.log(this.selectedAddress)
     // this.user.address = this.selectedAddress;
     this.addresses = [];
-    this.mapServ.setCoodination(this.lng,this.lat)
+    this.mapServ.setCoodination(this.lng, this.lat)
   }
-  
-  gotoMap(){
+
+  gotoMap() {
+    this.sendOrder();
     this.route.navigate(['tap/map'])
   }
+
+
+  sendOrder() {
+    var id, name, image, price, quantity
+    var product = []
+    var temp = {}
+
+    this.orderService.getOrder().forEach(a => {
+      a.forEach(data => {
+        temp = { id: data.id, name: data.name, image: data.image, price: data.price,longitude:this.lng,latitude:this.lat }
+        product.push(temp)
+
+      });
+    });
+   
+    this.afs.collection('order').doc(this.userInfor.currentUser()).set({
+      Order: product
+
+    }).then(function () {
+      alert("Order send")
+    })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
+  }
+
+
+
 
 }

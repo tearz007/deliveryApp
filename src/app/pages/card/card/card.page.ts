@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
+import { OrderService } from 'src/app/service/order/order.service';
 import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
 
 @Component({
@@ -15,11 +16,15 @@ export class CardPage implements OnInit {
   temp = []
   firebaseCard = []
   totalPrice = 0;
-  quntity = 1
+  quntity = 1;
 
-  constructor(private afs: AngularFirestore, private inforService: DisplayService, private userInfor: UserInforService, private route: Router, public alertController: AlertController) { }
+  constructor(private afs: AngularFirestore, private inforService: DisplayService,
+    private userInfor: UserInforService, private route: Router,
+    public alertController: AlertController,
+    private orderService: OrderService) { }
 
   ngOnInit() {
+
 
     this.cart.forEach(b => {
       console.log(b.name)
@@ -111,7 +116,7 @@ export class CardPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Checkout',
-      message: 'Are you sure you want to Checkout totalprice is R' + this.totalPrice,
+      message: 'Are you sure you want to Checkout? totalprice is R' + this.totalPrice,
       buttons: [
         {
           text: 'Cancel',
@@ -124,8 +129,9 @@ export class CardPage implements OnInit {
           text: 'Yes',
           handler: () => {
             console.log('Confirm Okay');
-            //this.route.navigate(['location'])
-            this.sendOrder()
+            this.setOrder()
+            this.route.navigate(['location'])
+
           }
         }
       ]
@@ -135,36 +141,26 @@ export class CardPage implements OnInit {
   }
 
 
-  sendOrder() {
+  setOrder() {
     var id, name, image, price, quantity
-
+    var product = []
+    var temp = {}
 
     for (let i = 0; i < this.firebaseCard.length; i++) {
-      this.afs.collection('order').doc(this.userInfor.currentUser()).set({
 
-        id: this.firebaseCard[i].id,
-        name: this.firebaseCard[i].name,
-        image: this.firebaseCard[i].image,
-        price: this.firebaseCard[i].price,
-
-
-      }).then(function () {
-        console.log("Order send!");
-      })
-        .catch(function (error) {
-          console.error("Error writing document: ", error);
-        });
+      temp = { id: this.firebaseCard[i].id, name: this.firebaseCard[i].name, image: this.firebaseCard[i].image, price: this.firebaseCard[i].price }
+      product.push(temp)
     }
-
-    /*
-    this.afs.collection('order').doc(this.userInfor.currentUser()).set({
-     
-    }).then(function () {
-      console.log("Order send!");
-    })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });*/
+    this.orderService.setOrder(product)
+    /* this.afs.collection('order').doc(this.userInfor.currentUser()).set({
+       orderName: product
+ 
+     }).then(function () {
+       alert("Order send")
+     })
+       .catch(function (error) {
+         console.error("Error writing document: ", error);
+       });*/
   }
 
 

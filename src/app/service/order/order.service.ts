@@ -5,9 +5,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class OrderService {
+  orderItems = []
+  constructor(private afs: AngularFirestore) { }
 
-  constructor(private afs: AngularFirestore) {}
 
+  setOrder(Prodact) {
+    this.orderItems.push(Prodact)
+  }
 
- 
+  getOrder(){
+    return this.orderItems
+  }
 }
