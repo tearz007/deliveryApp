@@ -20,7 +20,7 @@ export class TapPage implements OnInit {
     this.route.navigate(['tap/cart'])
   }
   toMap(){
-    this.route.navigate(['tap/cart'])
+    this.route.navigate(['tap/map'])
   }
   toProfile(){
     this.route.navigate(['tap/profile'])

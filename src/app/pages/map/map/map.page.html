@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="map"></div>
+
+  <div class="eg"></div>
+
+  <div class="btn" (click)="mapDirection()"> Go
+  </div>
+
+  <ion-searchbar (input)="search($event)" (change)="addressCheck($event)" placeholder="Enter your location"
+    [value]="selectedAddress"></ion-searchbar>
+  <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)">
+
+    {{ address}}
+
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <ion-buttons class="ion-padding">
+      <ion-button (click)="viewD()">
+        <label>direction</label>
+      </ion-button>
+      <ion-button (click)="marker()">
+        <ion-icon name="map-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="map-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

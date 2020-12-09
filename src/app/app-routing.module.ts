@@ -42,12 +42,25 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('./pages/profile/profile/profile.module').then( m => m.ProfilePageModule)
       },
+      {
+        path: 'map',
+        loadChildren: () => import('./pages/map/map/map.module').then( m => m.MapPageModule)
+      },
     ]
   },
   {
     path: 'model',
     loadChildren: () => import('./pages/model/model/model.module').then( m => m.ModelPageModule)
   },
+  {
+    path: 'map',
+    loadChildren: () => import('./pages/map/map/map.module').then( m => m.MapPageModule)
+  },  {
+    path: 'location',
+    loadChildren: () => import('./pages/location/location/location.module').then( m => m.LocationPageModule)
+  },
+
+
  
 ];
 

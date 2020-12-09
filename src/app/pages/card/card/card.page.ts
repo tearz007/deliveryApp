@@ -12,23 +12,23 @@ export class CardPage implements OnInit {
   firebaseCard = []
   ngOnInit() {
 
-       this.cart.forEach(a => {
+    this.cart.forEach(a => {
       this.inforService.getCart(a.id, a.name).subscribe(firebaseData => {
         // this.firebaseCard.push(data.data())
-        this.firebaseCard = [] 
-        firebaseData.forEach(a=>{
+        this.firebaseCard = []
+        firebaseData.forEach(a => {
 
-          let data =a.payload.doc.data();
-          data.id =a.payload.doc.id;
+          let data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
 
           var existItem = this.cart.find(x => x.id == data.id);
 
-          if (existItem) {    
+          if (existItem) {
             this.firebaseCard.push(data)
           }
           else {
             // console.log("item Do exist");
-          }     
+          }
         })
       })
 
@@ -36,14 +36,18 @@ export class CardPage implements OnInit {
     });
   }
 
-  deleteItem(id){
-    
+  deleteItem(id) {
+
     for (let i = 0; i < this.firebaseCard.length; i++) {
-     if(id==this.firebaseCard[i].id){
-       console.log(id)
-      this.firebaseCard.splice(id, 1) 
-     }
+      if (id == this.firebaseCard[i].id) {
+        console.log(id)
+        this.firebaseCard.splice(id, 1)
+      }
     }
-   }
+  }
+
+  gotoMap(){
+    console.log("map")
+  }
 
 }
