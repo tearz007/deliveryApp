@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   emailLogin() {
     this.login.userLogin(this.username, this.password).then(() => {
       alert("signed in")
-      this.userInfor.createUser()
+      this.userInfor.createCarrentUser()
     }).catch(e => {
       alert(e.message)
     })
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   googleLogin() {
     this.login.gmailLogin().then(() => {
       alert("signed in with google")
-      this.userInfor.createUser()
+      this.userInfor.createCarrentUser()
     }).catch(e => {
       alert(e.message)
     })
@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
   facebookLogin() {
     this.login.facebookLogin().then(() => {
       alert("facebook sign in")
-      this.userInfor.createUser()
+      this.userInfor.createCarrentUser()
     }).catch(e => {
       alert(e.message)
     })

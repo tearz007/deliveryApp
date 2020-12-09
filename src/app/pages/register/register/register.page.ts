@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login/login.service';
+import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
+import { user } from 'src/models/user';
 
 @Component({
   selector: 'app-register',
@@ -8,12 +11,28 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private route:Router) { }
+  // person:[{name:'',email:'',phoneNumber:0,password:''}]
+  name:string;
+  email:string;
+  phoneNumber:number;
+  password:string;
+  user$: user;
+  constructor(private route:Router,private userService:UserInforService,private loginService:LoginService) { }
 
   ngOnInit() {
   }
-  gotoLogin(){
-    this.route.navigate(['login'])
+
+  register(){
+    let person={name:this.name,email:this.email,phoneNumber:this.phoneNumber,password:this.password}
+    //this.userService.setUser(person)
+    this.loginService.createAcc(this.email,this.password).then(() => {
+     alert("Account is created")
+      this.userService.setUser(person)
+      this.route.navigate(['login'])
+    }).catch(e => {
+      alert(e.message)
+    })
+
   }
 
 }

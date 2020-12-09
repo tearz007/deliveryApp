@@ -12,7 +12,7 @@ export class DisplayService {
   collection: any
   cart = []
   product$: Products;
-
+ 
   
 
   constructor(private afs: AngularFirestore, private route:Router) { }

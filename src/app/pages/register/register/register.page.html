@@ -4,11 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Registration</ion-title>
-    <ion-buttons (click)=" gotoLogin()" slot="end">
-      <ion-button>
-        Register
-      </ion-button>
-    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -17,25 +13,24 @@
   <div class="collection">
 
     <div class="log">
-      <ion-input clearInput type="type" [(ngModel)]="username" placeholder="enter name"></ion-input>
+      <ion-input clearInput type="type" [(ngModel)]="name"  placeholder="enter name"></ion-input>
     </div>
 
     <div class="log">
-      <ion-input clearInput type="email" [(ngModel)]="usernams" placeholder="enter email"></ion-input>
+      <ion-input clearInput type="email" [(ngModel)]="email"  placeholder="enter email"></ion-input>
     </div>
 
     <div class="log">
-      <ion-input clearInput type="number" [(ngModel)]="password" placeholder="enter Phone number"></ion-input>
+      <ion-input clearInput type="number" [(ngModel)]="phoneNumber"  placeholder="enter Phone number"></ion-input>
     </div>
 
     <div class="log">
-      <ion-input clearInput type="password" [(ngModel)]="usernam" placeholder="password"></ion-input>
+      <ion-input clearInput type="password" [(ngModel)]="password" placeholder="password"></ion-input>
     </div>
-
-    <div class="log">
-      <ion-input clearInput type="password" [(ngModel)]="usernam" placeholder="Confirm password"></ion-input>
+    
+    <div class="btn">
+      <ion-button (click)="register()" expand="block" fill="outline">Register</ion-button>
     </div>
-
 
   </div>
 
