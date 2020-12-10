@@ -16,21 +16,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
 
-    this.collect = this.inforService.collection
-    this.inforService.getsub(this.collect).subscribe(firebaseData => {
-      this.fireData = []
-      firebaseData.forEach(a => {
-        let data: any = a.payload.doc.data()
-        data.id = a.payload.doc.id
-        this.fireData.push(data)
-      });
 
-      this.fireData.forEach(c => {
-        console.log(c)
-      });
-    })
-
-  
 
   }
 

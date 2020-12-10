@@ -42,7 +42,7 @@ export class ModelPage implements OnInit {
   }
 
   addToCart(_id) {
-    let product = { id:_id, name: this.collect }
+    let product = { id:_id, name: this.collect,quntity:1 }
     
     var existItem = this.cart.find(x => x.id == _id);
 

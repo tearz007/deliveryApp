@@ -9,54 +9,91 @@ import { DisplayService } from 'src/app/service/display/display.service';
 })
 export class CardPage implements OnInit {
   cart = this.inforService.cart;
+  temp = []
   firebaseCard = []
-  totalPrice=0
+  totalPrice = 0;
+  quntity = 1
 
+  constructor(private inforService: DisplayService, private route: Router) { }
 
-  constructor(private inforService: DisplayService, private route: Router) { 
-    
-  }
-  
   ngOnInit() {
-    
 
-    this.cart.forEach(a => {
-      this.inforService.getCart(a.id, a.name).subscribe(firebaseData => {
+    this.cart.forEach(b => {
+      console.log(b.name)
+      this.inforService.getCart(b.id, b.name).subscribe(firebaseData => {
         // this.firebaseCard.push(data.data())
-        this.firebaseCard = []
+        //to temp
+        this.temp = []
         firebaseData.forEach(a => {
 
           let data = a.payload.doc.data();
           data.id = a.payload.doc.id;
 
+
           var existItem = this.cart.find(x => x.id == data.id);
 
           if (existItem) {
-            this.firebaseCard.push(data)
+            // to temp
+            this.temp.push(data)
           }
           else {
             // console.log("item Do exist");
           }
 
-          
         })
-       console.log(this.firebaseCard.length)
-        for (let i = 0; i < this.firebaseCard.length; i++) {
-         this.totalPrice=this.totalPrice+this.firebaseCard[i].price
-        }
-        console.log(this.totalPrice)
+        //to temp
+        this.temp.forEach(a => {
+          var existItem = this.firebaseCard.find(x => x.id == a.id);
+          if (existItem) {
+
+          }
+          else {
+            // console.log("item Do exist");
+            this.firebaseCard.push(a)
+            //to fire
+            console.log('pushed')
+            this.getPrice()
+          }
+        });
+
       })
 
     });
   }
 
+  getPrice(){
+    this.firebaseCard.forEach(a => {
+      this.totalPrice=this.totalPrice+a.price
+      console.log(this.totalPrice)
+    });
+  }
+
   deleteItem(id) {
 
-    for (let i = 0; i < this.firebaseCard.length; i++) {
-      if (id == this.firebaseCard[i].id) {
-        console.log(id)
-        this.firebaseCard.splice(id, 1)
+    for (let i = 0; i < this.inforService.cart.length; i++) {
+      if (id == this.inforService.cart[i].id) {
+        this.firebaseCard.splice(i, 1)
+        this.inforService.cart.splice(i, 1)
       }
+    }
+  }
+
+  add(id) {
+
+    var existItem = this.firebaseCard.find(x => x.id == id);
+
+    if (existItem) {
+
+    }
+    else {
+
+    }
+
+  }
+
+  subtract() {
+    if (this.quntity > 1) {
+      this.quntity = this.quntity - 1
     }
   }
 
@@ -66,3 +103,4 @@ export class CardPage implements OnInit {
 
 
 }
+

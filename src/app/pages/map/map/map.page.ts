@@ -19,8 +19,8 @@ export class MapPage implements OnInit {
   directions
   addresses = [];
 
-  lng
-  lat
+  lng=""
+  lat=""
 
   constructor(private mapServ: MapService) { 
     this.lng = this.mapServ.lng;
@@ -42,8 +42,8 @@ export class MapPage implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [28.61502, -26.45746],
-      //center:[-77.020945, 38.878241],  
+     // center: [28.61502, -26.45746],
+      center:[this.lng, this.lat],  
       zoom: 10 // starting zoom
     });
   }
@@ -91,6 +91,11 @@ export class MapPage implements OnInit {
       zoom: 15,
     });
     
+    this.map.addControl(this.directions);
+
+    console.log(this.lng, this.lat)
+    this.directions.setOrigin([this.lng, this.lat]);
+    this.directions.setDestination([29.61502, -27.65746])
     this.map.addControl(this.directions);
   }
 

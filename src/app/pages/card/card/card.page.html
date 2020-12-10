@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content  color="medium" fullscreen=false>
+<ion-content color="medium" fullscreen=false>
   <ion-grid class="ion-padding" ion-grid-width=300>
 
     <ion-row *ngFor="let item of firebaseCard">
@@ -30,25 +30,36 @@
 
         </div>
         <div class="add">
-          <ion-icon size="large" name="caret-back-sharp"></ion-icon>
-          <ion-badge size="large" color="light">99</ion-badge>
-          <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
+
+          <a (click)="subtract()">
+            <ion-icon size="large" name="caret-back-sharp"></ion-icon>
+          </a>
+
+          <ion-badge size="large" color="light">{{item.quantity}}</ion-badge>
+
+          <a (click)="add(item.id)">
+            <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
+          </a>
+
+
+
+
         </div>
 
-        <div class="delete" >
+        <div class="delete">
           <ion-buttons (click)="deleteItem(item.id)">
             <ion-button>
-              <ion-icon size="large" color="danger" name="trash-outline"></ion-icon>
+              <ion-icon size="large" name="trash-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
-          
+
         </div>
 
       </ion-col>
     </ion-row>
 
 
-  </ion-grid> 
+  </ion-grid>
 
 </ion-content>
 

@@ -55,13 +55,13 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () => import('./pages/map/map/map.module').then( m => m.MapPageModule)
-  },  {
+  },
+  {
     path: 'location',
     loadChildren: () => import('./pages/location/location/location.module').then( m => m.LocationPageModule)
   },
 
 
- 
 ];
 
 @NgModule({

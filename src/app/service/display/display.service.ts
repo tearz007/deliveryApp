@@ -40,7 +40,8 @@ export class DisplayService {
   setCart(collec) {
     this.product$ = {
       id: collec.id,
-      name: collec.name
+      name: collec.name,
+      quntity:collec.quantity
     }
     let data = { id: this.product$.id, name: this.product$.name }
     this.cart.push(data)
