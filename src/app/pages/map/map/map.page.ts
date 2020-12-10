@@ -101,8 +101,5 @@ export class MapPage implements OnInit {
     this.map.addControl(this.directions);
   }
 
-
-
-
 }
 
