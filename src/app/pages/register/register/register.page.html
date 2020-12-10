@@ -1,218 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DisplayService } from 'src/app/service/display/display.service';
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registration</ion-title>
+    <ion-buttons (click)=" gotoLogin()" slot="end">
+      <ion-button>
+        Register
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-@Component({
-  selector: 'app-card',
-  templateUrl: './card.page.html',
-  styleUrls: ['./card.page.scss'],
-})
-export class CardPage implements OnInit {
-  cart = this.inforService.cart;
-  temp = []
-  firebaseCard = []
-  totalPrice = 0;
-  quntity = 1
+<ion-content>
 
-  constructor(private inforService: DisplayService, private route: Router) { }
+  <div class="collection">
 
-  ngOnInit() {
+    <div class="log">
+      <ion-input clearInput type="type" [(ngModel)]="username" placeholder="enter name"></ion-input>
+    </div>
 
-    this.cart.forEach(b => {
-      console.log(b.name)
-      this.inforService.getCart(b.id, b.name).subscribe(firebaseData => {
-        // this.firebaseCard.push(data.data())
-        //to temp
-        this.temp = []
-        firebaseData.forEach(a => {
+    <div class="log">
+      <ion-input clearInput type="email" [(ngModel)]="usernams" placeholder="enter email"></ion-input>
+    </div>
 
-          let data = a.payload.doc.data();
-          data.id = a.payload.doc.id;
-    
+    <div class="log">
+      <ion-input clearInput type="number" [(ngModel)]="password" placeholder="enter Phone number"></ion-input>
+    </div>
 
-          var existItem = this.cart.find(x => x.id == data.id);
+    <div class="log">
+      <ion-input clearInput type="password" [(ngModel)]="usernam" placeholder="password"></ion-input>
+    </div>
 
-          if (existItem) {
-            // to temp
-            this.temp.push(data)
-          }
-          else {
-            // console.log("item Do exist");
-          }
-
-        })
-        //to temp
-        this.temp.forEach(a => {
-          var existItem = this.firebaseCard.find(x => x.id == a.id);
-          if (existItem) {
-
-          }
-          else {
-            // console.log("item Do exist");
-            this.firebaseCard.push(a)
-            //to fire
-            console.log('pushed')
-          }
-        });
-
-      })
-      //to temp
-      this.temp.forEach(a => {
-        //to fire
-        this.firebaseCard.push(a)
-        console.log('pushed')
-      });
-    });
-  }
-
-  deleteItem(id) {
-
-    /*for (let i = 0; i < this.firebaseCard.length; i++) {
-      if (id == this.firebaseCard[i].id) {
-        console.log(id)
-        console.log(this.firebaseCard[i].id)
-        this.firebaseCard.splice(id, 1)
-        this.inforService.cart.splice(id, 1)
-        this.temp.splice(id, 1)
-      }
-    }*/
-    for (let i = 0; i < this.inforService.cart.length; i++) {
-      if (id == this.inforService.cart[i].id) {
-        console.log(id)
-        console.log(this.firebaseCard[i].id)
-        this.firebaseCard.splice(id, 1)
-        this.inforService.cart.splice(id, 1)
-       // this.temp.splice(id, 1)
-      }
-    }
-  }
-
-  add(id) {
-    
-    var existItem = this.firebaseCard.find(x => x.id == id);
-
-    if (existItem) {
-      
-    }
-    else {
-
-    }
-    
-  }
-
-  subtract() {
-    if (this.quntity > 1) {
-      this.quntity = this.quntity - 1
-    }
-  }
-
-  gotoLocation() {
-    this.route.navigate(['location'])
-  }
+    <div class="log">
+      <ion-input clearInput type="password" [(ngModel)]="usernam" placeholder="Confirm password"></ion-input>
+    </div>
 
 
-}
+  </div>
 
-
-<!-- dispaly -->
-
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Products } from 'src/models/product';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DisplayService {
-
-  collection: any
-  cart = []
-  product$: Products;
-
-  
-
-  constructor(private afs: AngularFirestore, private route:Router) { }
-
-  getImgs() {
-    return this.afs.collection('categories').snapshotChanges();
-  }
-  getCategories(collec) {
-    return this.afs.collection(collec).snapshotChanges();
-  }
-
-  getsub(collec) {
-    return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
-  }
-
-  getCart(_id, name) {
-    // return this.afs.collection('products').doc(name).collection(name).doc(_id).get()
-    // return this.afs.collection('products').doc(name).collection(name).snapshotChanges()
-    return this.afs.collection('products',ref =>ref.where('id','==',name)).doc(name).collection(name).snapshotChanges()
-  }
-  getCarts(_id, name) {
-    // return this.afs.collection('products').doc(name).collection(name).doc(_id).get()
-    return this.afs.collection('products',ref =>ref.where('id','==',name)).doc(name).collection(name).snapshotChanges()
-  }
-
-  setCollection(collec) {
-    this.collection = collec
-  }
-
-  setCart(collec) {
-    this.product$ = {
-      id: collec.id,
-      name: collec.name,
-      quntity:collec.quntity
-
-    }
-    let data = { id: this.product$.id, name: this.product$.name,quntity:this.product$.quntity }
-    this.cart.push(data)
-  }
-
-  reloadComponent(routes) {
-    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.route.onSameUrlNavigation = 'reload';
-    this.route.navigate([routes]);
-  }
-  
-}
-
-
-
-
-
-
-
-/*
- setCart(collec){
-    this.product$.subscribe(data=>{
-      data.id=collec.id;
-      data.name=collec.name
-    })
-  }
-
-
-
-
-var  uid;
-
-    //  if(user!=null){
-    //    uid=user.uid
-    //  }
-    this.afs.collection('categories').snapshotChanges().subscribe(firebaseData=>{
-
-      firebaseData.forEach(a => {
-        this.arry=[]
-        let data:any=a.payload.doc.data();
-        data.id=a.payload.doc.id;
-        this.arry.push(data)
-      });
-
-      this.arry.forEach(a=> {
-        console.log(a)
-        //console.log(a.id)
-      });
-    }) */
-
+</ion-content>

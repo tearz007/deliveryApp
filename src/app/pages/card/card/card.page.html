@@ -37,7 +37,7 @@
 
           <ion-badge size="large" color="light">{{item.quantity}}</ion-badge>
 
-          <a (click)="add(item.id)">
+          <a (click)="add(item.id,item.quantity)">
             <ion-icon size="large" name="caret-forward-sharp"></ion-icon>
           </a>
 
@@ -69,7 +69,7 @@
     <div class="price">
       <ion-label>Total Price</ion-label>
       <br>
-      <ion-label>R10</ion-label>
+      <ion-label>{{'R'+totalPrice}}</ion-label>
     </div>
     <div class="btn ">
       <ion-buttons (click)="gotoLocation()" class="ion-padding">

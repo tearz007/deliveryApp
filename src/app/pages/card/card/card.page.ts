@@ -48,11 +48,15 @@ export class CardPage implements OnInit {
 
           }
           else {
+            this.totalPrice=0
             // console.log("item Do exist");
             this.firebaseCard.push(a)
             //to fire
             console.log('pushed')
-            this.getPrice()
+            this.firebaseCard.forEach(a => {
+              this.totalPrice=this.totalPrice+a.price
+              // console.log(this.totalPrice)
+            });
           }
         });
 
@@ -72,18 +76,20 @@ export class CardPage implements OnInit {
 
     for (let i = 0; i < this.inforService.cart.length; i++) {
       if (id == this.inforService.cart[i].id) {
+        this.totalPrice=this.totalPrice-this.firebaseCard[i].price
         this.firebaseCard.splice(i, 1)
         this.inforService.cart.splice(i, 1)
       }
     }
   }
 
-  add(id) {
+  add(id,quntity) {
 
     var existItem = this.firebaseCard.find(x => x.id == id);
 
     if (existItem) {
-
+       quntity=quntity+1
+       console.log(quntity)
     }
     else {
 
@@ -100,7 +106,6 @@ export class CardPage implements OnInit {
   gotoLocation() {
     this.route.navigate(['location'])
   }
-
 
 }
 
