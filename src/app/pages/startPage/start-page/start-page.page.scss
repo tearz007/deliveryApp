@@ -1,7 +1,8 @@
 .container {
     width: 100%;
     height: 100%;
-    background-color: gray;
+    // background-color: gray;
+    background-color:green;
     position: relative;
     z-index: 0;
 
@@ -61,14 +62,7 @@
                 }
             }
         }
-        /*.infor{
-            position: absolute;
-            bottom: 0;
-            clear: both;
-            background-color: wheat;
-            width: 100%;
-            height: 40%;
-        }*/
+ 
         ion-slide {
             border-radius: 40px;
             height: 400px;
@@ -81,32 +75,3 @@
     }
 }
 
-/*.category{
-    padding-top: 10px;
-    // height: 100vh;
-    
-    .title{
-      margin: auto;
-      text-align: left;
-      justify-content: left;
-    }
-}
-.category ion-slide{
-    width: 40%;
-    height: 150px;
-    border-radius: 10%;
-    margin-left: 5%;
-}
-.img{
-    width: 100%;
-    height: 100%;  
-    img{
-        width: 100%;
-        height: 100%;
-    }
-}
-
-
-#slide{
-// background-color: rgb(136, 22, 22);
-}*/
