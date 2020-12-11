@@ -23,7 +23,9 @@ export class StartPagePage implements OnInit {
 
   ngOnInit() {
      this.loginService.user$
-     console.log(this.loginService.user$)
+     
+     this.setCollection(this.inforService.collection)
+     this.getC()
 
     this.inforService.getImgs().subscribe(firebaseData=>{
       this.imgs=[]
@@ -47,7 +49,7 @@ export class StartPagePage implements OnInit {
 
   slide2 = {
     initialSlide: 0,
-    slidesPerView: 1.2,
+    slidesPerView: 1.5,
     speed: 400,
     spaceBetween: 10,
     runCallbacksOnInit: true,

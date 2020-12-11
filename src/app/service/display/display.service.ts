@@ -37,6 +37,9 @@ export class DisplayService {
   }
 
   setCollection(collec) {
+    if(collec<0 || collec ==null){
+collec="grinder"
+    }
     this.collection = collec
   }
 
