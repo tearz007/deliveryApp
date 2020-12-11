@@ -19,10 +19,12 @@ export class StartPagePage implements OnInit {
   collect: string
   
   cartLength
+  cart = this.inforService.cart;
   constructor(private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
 
   ngOnInit() {
      this.loginService.user$
+     this.cartLength=this.inforService.cart.length;
      
      this.setCollection(this.inforService.collection)
      this.getC()
@@ -97,17 +99,21 @@ export class StartPagePage implements OnInit {
     })
   }
 
+  addToCart(_id) {
+    let product = { id:_id, name: this.collect,quntity:1 }
+    
+    var existItem = this.cart.find(x => x.id == _id);
 
+    if (existItem) {
+      console.log("item already exist");
+    }
+    else {
+      this.inforService.setCart(product);
+      this.cartLength=this.inforService.cart.length;
+    }
+  }
+
+  gotoCart() {
+    this.route.navigate(['tap/cart'])
+  }
 }
-/*
-.subscribe(firebaseData=>{
-
-      firebaseData.forEach(a => {
-        this.imgs=[]
-        let data:any=a.payload.doc.data();
-        data=a.payload.doc.id
-        this.imgs.push(data)
-        
-      });
-    })
-*/

@@ -130,13 +130,37 @@
 
         .img {
             width: 100%;
-            height: 60%;
+            height: 65%;
             border-radius: 40px;
 
             img {
                 border-radius: 40px;
                 width: 100%;
                 height: 100%;
+            }
+        }
+        
+        .infor {
+            margin-top: 3%;
+            width: 100%;
+            padding-left: 5%;
+            // background-color: green;
+            position: relative;
+
+            .detail {
+                text-align: left;
+
+                .name,
+                .price {
+                    font-weight: bold;
+                }
+
+            }
+
+            .btn {
+                position: absolute;
+                right: 3%;
+                bottom: 2%;
             }
         }
     }

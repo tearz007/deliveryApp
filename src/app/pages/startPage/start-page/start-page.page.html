@@ -81,6 +81,12 @@
 
       </div>
 
+      <ion-buttons (click)="gotoCart()">
+        <ion-button>
+          <ion-icon size="large" name="bag-handle-outline"></ion-icon>
+          <ion-badge slot="end">{{cartLength}}</ion-badge>
+        </ion-button>
+      </ion-buttons>
     </div>
   </div>
 </ion-content>
