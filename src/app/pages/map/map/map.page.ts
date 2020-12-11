@@ -19,31 +19,42 @@ export class MapPage implements OnInit {
   directions
   addresses = [];
 
-  lng=""
-  lat=""
+  lng = ""
+  lat = ""
+  lngD = ""
+  latD = ""
 
-  constructor(private mapServ: MapService) { 
-    this.lng = this.mapServ.lng;
-    this.lat = this.mapServ.lat;
+  constructor(private mapServ: MapService) {
+    this.lngD = this.mapServ.lng;
+    this.latD = this.mapServ.lat;
   }
 
   ngOnInit() {
-  
+    this.lngD = this.mapServ.lng;
+    this.latD = this.mapServ.lat;
+    if (this.lngD !=null) {
+      this.lng = this.lngD;
+      this.lat = this.latD;
+    } else {
+      this.lng = '28.61502';
+      this.lat = '-26.45746';
+    }
+
     this.mapFunctions();
 
     this.mapFunction2();
     this.mapDirection();
-      
-    // this.mapDirection()
+
   }
 
   mapFunctions() {
     mapboxgl.accessToken = this.mapServ.key;
+
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-     // center: [28.61502, -26.45746],
-      center:[this.lng, this.lat],  
+      // center: [28.61502, -26.45746],
+      center: [this.lng, this.lat],
       zoom: 10 // starting zoom
     });
   }
@@ -90,17 +101,17 @@ export class MapPage implements OnInit {
       routePadding: 25,
       zoom: 15,
     });
-    
+
     this.map.addControl(this.directions);
 
     console.log(this.lng, this.lat)
-    this.directions.setOrigin([this.lng, this.lat]);
+    this.directions.setOrigin([this.lngD, this.latD]);
     this.directions.setDestination([29.61502, -27.65746])
     this.map.addControl(this.directions);
   }
 
-  test(){
-    console.log(this.lng, this.lat)
+  test() {
+    console.log(this.lngD, this.latD)
     this.directions.setOrigin([this.lng, this.lat]);
     this.directions.setDestination([29.61502, -27.65746])
     this.map.addControl(this.directions);

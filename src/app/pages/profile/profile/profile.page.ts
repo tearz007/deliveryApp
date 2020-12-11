@@ -15,7 +15,9 @@ export class ProfilePage implements OnInit {
   profile = []
   _uid;
   constructor(private inforService: DisplayService, private userService: UserInforService) {
-    this._uid=this.userService.currentUser()
+    // this._uid=this.userService.currentUser()
+    this._uid=localStorage.getItem('id')
+    
    }
 
   ngOnInit() {
@@ -24,8 +26,7 @@ export class ProfilePage implements OnInit {
       userprofile.forEach(a => {
         var data: any = a.payload.doc.data()
         data.id = a.payload.doc.id;
-
-             
+       
         if(this._uid==data.id){
           this.profile.push(data)
         } 

@@ -5,7 +5,6 @@ import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/service/login/login.service';
 import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
-import { user } from 'src/models/user';
 import firebase from 'firebase/app'
 
 @Component({
@@ -18,7 +17,6 @@ export class LoginPage implements OnInit {
   username
   password
   profile=[]
-  user$: Observable<user>
   constructor(private route: Router, public loadingController: LoadingController, private login: LoginService, private userInfor: UserInforService) { }
   ngOnInit() {
 
@@ -29,6 +27,10 @@ export class LoginPage implements OnInit {
     this.login.userLogin(this.username, this.password).then(() => {
       alert("signed in")
       this.route.navigate(['tap/start-page'])
+      
+      console.log(this.userInfor.currentUser())
+      localStorage.setItem('id',this.userInfor.currentUser())
+
     }).catch(e => {
       alert(e.message)
     })
@@ -57,8 +59,6 @@ export class LoginPage implements OnInit {
   }
  
   
- 
-
   toRegistration() {
     this.route.navigate(['register'])
   }

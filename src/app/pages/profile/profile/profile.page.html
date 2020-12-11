@@ -9,8 +9,16 @@
 
 <ion-content>
 
-  <div *ngFor="let item of fireData">
-    <img [src]=item.image>
+  <div class="profile" *ngFor="let item of profile">
+
+    <ion-label color="primary">{{'Name : '}} {{item.Name}}</ion-label>
+    <br>
+    <ion-label color="primary">{{'Email :'}} {{item.Email}}</ion-label>
+    <br>
+    <ion-label color="primary">{{'PhoneNumber :'}} {{item.PhoneNumber}}</ion-label>
+    <br>
+    <ion-label color="primary">{{'Id :'}} {{item.id}}</ion-label>
+
   </div>
  
 </ion-content>

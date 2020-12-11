@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Router } from '@angular/router';
-
 import { Observable } from 'rxjs';
-import { user } from 'src/models/user';
+
 import firebase from 'firebase/app'
+import { auth } from 'src/models/auth';
 
 
 @Injectable({
@@ -13,7 +13,8 @@ import firebase from 'firebase/app'
 export class UserInforService {
 
   arry = []
-  user$: user;
+  
+  auth$: auth;
   person = {}
   
   constructor(private afs: AngularFirestore, private route: Router) {
@@ -39,7 +40,7 @@ export class UserInforService {
       email = users.email;
       uid = users.uid;
     }
-    this.user$ = {
+    this.auth$ = {
       name: person.name,
       email: person.email,
       phoneNumber: person.phoneNumber,
@@ -50,9 +51,9 @@ export class UserInforService {
 
     this.afs.collection('user').doc(uid).set({
       Email: email,
-      Name: this.user$.name,
-      PhoneNumber: this.user$.phoneNumber,
-      password: this.user$.password,
+      Name: this.auth$.name,
+      PhoneNumber: this.auth$.phoneNumber,
+      password: this.auth$.password,
       id: uid
     }).then(function () {
       console.log("Document successfully written!");

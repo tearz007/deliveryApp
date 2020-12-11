@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
+import { LoginService } from 'src/app/service/login/login.service';
 import { ModelPage } from '../../model/model/model.page';
 
 
@@ -14,9 +15,12 @@ export class StartPagePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   imgs=[]
-  constructor(private route: Router, public modalController: ModalController,private inforService:DisplayService) { }
+  constructor(private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
 
   ngOnInit() {
+     this.loginService.user$
+     console.log(this.loginService.user$)
+
     this.inforService.getImgs().subscribe(firebaseData=>{
       this.imgs=[]
       firebaseData.forEach(a => {

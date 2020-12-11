@@ -3,9 +3,10 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { user } from 'src/models/user';
 import firebase from 'firebase/app';
+import { switchMap } from 'rxjs/operators';
 
 
 
@@ -16,16 +17,18 @@ import firebase from 'firebase/app';
 export class LoginService {
 
   user$: Observable<user>
+  saveUser
+
   constructor(private auth: AngularFireAuth, private afs: AngularFirestore, private route: Router) {
 
-  /*  this.user$ = this.auth.authState.pipe(
+    this.user$ = this.auth.authState.pipe(
       switchMap(user => {
         if (user) {
           return this.afs.doc<user>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
-      }));*/
+      }));
   }
 
   createAcc(email, pass) {
@@ -67,6 +70,10 @@ export class LoginService {
 
   logout() {
     return this.auth.signOut();
+  }
+
+  setCUser(){
+
   }
 
   reloadComponent(routes) {

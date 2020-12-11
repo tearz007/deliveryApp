@@ -91,7 +91,7 @@ export class LocationPage implements OnInit {
 
     this.orderService.getOrder().forEach(a => {
       a.forEach(data => {
-        temp = { id: data.id, name: data.name, image: data.image, price: data.price,longitude:this.lng,latitude:this.lat }
+        temp = { id: data.id, name: data.name, image: data.image, price: data.price,quantity:data.quantity , longitude:this.lng,latitude:this.lat }
         product.push(temp)
 
       });

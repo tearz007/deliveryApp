@@ -27,6 +27,9 @@ export class DisplayService {
   getsub(collec) {
     return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
   }
+  getQuantity(collec,id) {
+    return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
+  }
 
   getCart(_id, name) {
     // return this.afs.collection('products').doc(name).collection(name).doc(_id).get()

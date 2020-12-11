@@ -27,17 +27,13 @@ export class CardPage implements OnInit {
 
 
     this.cart.forEach(b => {
-      console.log(b.name)
       this.inforService.getCart(b.id, b.name).subscribe(firebaseData => {
-        // this.firebaseCard.push(data.data())
-        //to temp
+
         this.temp = []
         firebaseData.forEach(a => {
 
           let data = a.payload.doc.data();
           data.id = a.payload.doc.id;
-
-
           var existItem = this.cart.find(x => x.id == data.id);
 
           if (existItem) {
@@ -46,9 +42,7 @@ export class CardPage implements OnInit {
           else {
             // console.log("item Do exist");
           }
-
         })
-
         this.temp.forEach(a => {
           var existItem = this.firebaseCard.find(x => x.id == a.id);
           if (existItem) {
@@ -68,8 +62,31 @@ export class CardPage implements OnInit {
         });
 
       })
+      
+// Quantity code
+      console.log('end line')
+      this.inforService.getQuantity(b.name, b.id).subscribe(data => {
+        
+        this.temp = []
+        data.forEach(a => {
+
+          let data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
+        
+          var existItem = this.cart.find(x => x.id == data.id);
+          if (existItem) {
+            this.temp.push(data)
+          }
+          else {
+            // console.log("item Do exist");
+          }
+        })
+      })
+
 
     });
+
+
   }
 
   getPrice() {
@@ -90,13 +107,12 @@ export class CardPage implements OnInit {
     }
   }
 
-  add(id, quntity) {
+  add(id) {
 
     var existItem = this.firebaseCard.find(x => x.id == id);
 
     if (existItem) {
-      quntity = quntity + 1
-      console.log(quntity)
+
     }
     else {
 
@@ -148,19 +164,11 @@ export class CardPage implements OnInit {
 
     for (let i = 0; i < this.firebaseCard.length; i++) {
 
-      temp = { id: this.firebaseCard[i].id, name: this.firebaseCard[i].name, image: this.firebaseCard[i].image, price: this.firebaseCard[i].price }
+      temp = { id: this.firebaseCard[i].id, name: this.firebaseCard[i].name, image: this.firebaseCard[i].image, price: this.firebaseCard[i].price, quantity: this.firebaseCard[i].quantity }
       product.push(temp)
     }
     this.orderService.setOrder(product)
-    /* this.afs.collection('order').doc(this.userInfor.currentUser()).set({
-       orderName: product
- 
-     }).then(function () {
-       alert("Order send")
-     })
-       .catch(function (error) {
-         console.error("Error writing document: ", error);
-       });*/
+
   }
 
 
