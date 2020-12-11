@@ -14,10 +14,10 @@ export class ModelPage implements OnInit {
 
   fireData = []
   collect: string
+  
+  cartLength
   product$: Observable<Products>
   cart = this.inforService.cart;
-  cartLength
-
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
   ngOnInit() {
@@ -53,7 +53,6 @@ export class ModelPage implements OnInit {
       this.inforService.setCart(product);
       this.cartLength=this.inforService.cart.length;
     }
-
   }
 
   gotoCart() {

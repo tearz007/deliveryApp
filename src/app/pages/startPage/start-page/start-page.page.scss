@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     // background-color: gray;
-    background-color:green;
+    background-color: green;
     position: relative;
     z-index: 0;
 
@@ -23,9 +23,10 @@
             position: absolute;
             top: 15%;
             left: 0;
-            transform: translate(0,-15%);
+            transform: translate(0, -15%);
         }
     }
+
     .collect {
         width: 100%;
         height: 70%;
@@ -34,13 +35,15 @@
         border-top-right-radius: 10px;
         //background-color: violet;
         z-index: 2;
+
         .title {
             color: honeydew;
             font-weight: bold;
             padding-bottom: 2%;
-            font-size: 30px;
+            font-size: 20px;
             // font-family: ;
         }
+
         .item {
             position: absolute;
             top: 0;
@@ -51,27 +54,140 @@
             width: 100%;
             height: 100%;
             border-radius: 40px;
+
             .img {
                 width: 100%;
                 height: 100%;
                 border-radius: 40px;
+
                 img {
                     border-radius: 40px;
                     width: 100%;
                     height: 100%;
                 }
             }
+            
+        .infor {
+            margin-top: 5%;
+            width: 100%;
+            // background-color: green;
+            position: relative;
+
+            .detail {
+                text-align: left;
+
+                .name,
+                .price {
+                    font-weight: bold;
+                }
+
+            }
+
+            .btn {
+                position: absolute;
+                right: 0%;
+                bottom: 2%;
+            }
         }
- 
-        ion-slide {
+        }
+
+        .firstSlide {
             border-radius: 40px;
-            height: 400px;
+            height: 18vh;
             background-color: violet;
             position: relative;
-            // display: flex;
-            // justify-content: center;
-            // align-items: flex-start;
         }
     }
+
 }
 
+.itemCollection {
+    // background-color: hotpink;
+    width: 100%;
+    height: 40vh;
+
+
+    ion-slides {
+        height: 100%;
+        // background-color: lawngreen;
+    }
+
+    .ion-slide {
+        border-radius: 40px;
+        height: 98%;
+        width: 50%;
+        background-color: lightblue;
+        position: relative;
+
+        .itemz {
+            width: 70%;
+            height: 96%;
+            border-radius: 10%;
+            margin-block-end: 5%;
+            background-color: rgb(128, 128, 128, 0.5);
+            display: inline-block;
+        }
+
+        .img {
+            width: 100%;
+            height: 60%;
+            border-radius: 10%;
+
+            img {
+                border-radius: 10%;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+
+}
+
+
+/* .item {
+        width: 70%;
+        height: 50%;
+        border-radius: 10%;
+        margin-block-end: 5%;
+        background-color: rgb(128, 128, 128, 0.5);
+        display: inline-block;
+
+
+
+        .img {
+            width: 80%;
+            height: 70%;
+            border-radius: 10%;
+
+            img {
+                border-radius: 10%;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .infor {
+            margin-top: 5%;
+            width: 100%;
+            // background-color: green;
+            position: relative;
+
+            .detail {
+                text-align: left;
+
+                .name,
+                .price {
+                    font-weight: bold;
+                }
+
+            }
+
+            .btn {
+                position: absolute;
+                right: 0%;
+                bottom: 2%;
+            }
+        }
+
+    }*/

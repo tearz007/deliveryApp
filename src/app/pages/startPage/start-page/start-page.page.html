@@ -13,7 +13,6 @@
           <ion-icon size="large" name="menu-sharp"></ion-icon>
         </ion-menu-button>
       </ion-buttons>
-
     </div>
 
     <div class="collect ion-padding">
@@ -23,8 +22,8 @@
 
       <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slideOpts">
 
-        <ion-slide *ngFor="let data of imgs">
-          <div class="item" (click)="presentModal(data.name)">
+        <ion-slide class="firstSlide" *ngFor="let data of imgs">
+          <div class="item" (click)="setgetter(data.name)">
             <div class="img">
               <img [src]=data.image>
             </div>
@@ -37,10 +36,142 @@
         </ion-slide>
 
       </ion-slides>
+
+      <div class="title">
+        <ion-label>...</ion-label>
+      </div>
+
+      <div class="itemCollection">
+
+        <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slide2">
+          <ion-slide class="ion-slide" *ngFor="let item of fireData">
+            <div class="itemz">
+              <div class="img">
+                <img [src]=item.image>
+              </div>
+              <div class="infor">
+                <div class="detail">
+                  <div class="name">
+                    <ion-label>{{item.name}}</ion-label>
+                  </div>
+                  <div class="rate">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  <div class="price">
+                    <ion-label>{{'R'+item.price}}</ion-label>
+                  </div>
+                </div>
+                <div class="btn" (click)="addToCart(item.id)">
+                  <ion-buttons>
+                    <ion-button fill="outline" shape="round">
+                      <ion-icon name="cart-outline"></ion-icon>
+                      ADD
+                    </ion-button>
+                  </ion-buttons>
+                </div>
+              </div>
+
+            </div>
+          </ion-slide>
+        </ion-slides>
+
+      </div>
+
     </div>
   </div>
 </ion-content>
 
+
+
+
+
+<!-- 
+            <div *ngFor="let item of fireData">
+              <div class="img">
+                <img [src]=item.image>
+              </div>
+              <div class="infor">
+                <div class="detail">
+                  <div class="name">
+                    <ion-label>{{item.name}}</ion-label>
+                  </div>
+                  <div class="rate">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  <div class="price">
+                    <ion-label>{{'R'+item.price}}</ion-label>
+                  </div>
+                </div>
+                <div class="btn" (click)="addToCart(item.id)">
+                  <ion-buttons>
+                    <ion-button fill="outline" shape="round">
+                      <ion-icon name="cart-outline"></ion-icon>
+                      ADD
+                    </ion-button>
+                  </ion-buttons>
+                </div>
+              </div>
+  
+            </div>
+   
+ -->
+<!--   <div class="itemCollection">
+        <div class="items ion-padding" *ngFor="let item of fireData">
+          <div class="img">
+            <img [src]=item.image>
+          </div>
+        </div>
+      </div> -->
+
+
+<!-- 
+
+  <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slideOpts">
+
+        <ion-slide class="item ion-padding" *ngFor="let item of fireData">
+          <div>
+            <div class="img">
+              <img [src]=item.image>
+            </div>
+            <div class="infor">
+              <div class="detail">
+                <div class="name">
+                  <ion-label>{{item.name}}</ion-label>
+                </div>
+                <div class="rate">
+                  <ion-icon name="star-outline"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                </div>
+                <div class="price">
+                  <ion-label>{{'R'+item.price}}</ion-label>
+                </div>
+              </div>
+              <div class="btn" (click)="addToCart(item.id)">
+                <ion-buttons>
+                  <ion-button fill="outline" shape="round">
+                    <ion-icon name="cart-outline"></ion-icon>
+                    ADD
+                  </ion-button>
+                </ion-buttons>
+              </div>
+            </div>
+
+          </div>
+        </ion-slide>
+
+      </ion-slides>
+ -->
 
 
 
