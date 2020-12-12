@@ -51,7 +51,7 @@ export class StartPagePage implements OnInit {
 
   slide2 = {
     initialSlide: 0,
-    slidesPerView: 1.5,
+    slidesPerView: 1.4,
     speed: 400,
     spaceBetween: 10,
     runCallbacksOnInit: true,
