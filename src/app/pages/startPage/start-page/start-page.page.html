@@ -6,13 +6,17 @@
         <ion-button>
           <ion-icon size="large" name="log-in-outline"></ion-icon>
         </ion-button>
+        
       </ion-buttons>
 
       <ion-buttons class="menu_btn">
         <ion-menu-button>
           <ion-icon size="large" name="menu-sharp"></ion-icon>
         </ion-menu-button>
+        
+        
       </ion-buttons>
+      
     </div>
 
     <div class="collect ion-padding">
@@ -43,7 +47,7 @@
 
       <div class="itemCollection">
 
-        <ion-slides id="slide" roundLengths=true pages=true scrollbar=true [options]="slide2">
+        <ion-slides id="slide" roundLengths=true pages=true [options]="slide2">
           <ion-slide class="ion-slide" *ngFor="let item of fireData">
             <div class="itemz">
               <div class="img">
@@ -81,9 +85,9 @@
 
       </div>
 
-      <ion-buttons (click)="gotoCart()">
+      <ion-buttons slot="end" (click)="gotoCart()">
         <ion-button>
-          <ion-icon size="large" name="bag-handle-outline"></ion-icon>
+          <ion-icon style="color:white" size="large" name="bag-handle-outline"></ion-icon>
           <ion-badge slot="end">{{cartLength}}</ion-badge>
         </ion-button>
       </ion-buttons>

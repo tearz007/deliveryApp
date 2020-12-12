@@ -103,6 +103,8 @@ export class CardPage implements OnInit {
         this.totalPrice = this.totalPrice - this.firebaseCard[i].price
         this.firebaseCard.splice(i, 1)
         this.inforService.cart.splice(i, 1)
+
+        
       }
     }
   }
