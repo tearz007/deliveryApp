@@ -250,7 +250,8 @@
         border-radius: 40px;
         height: 98%;
         width: 100%;
-        background-color: lightblue;
+        // background-color: lightblue;
+        background-color: rgb(0, 0, 0,0.5);
         position: relative;
         margin-top: 1.5%;
 
@@ -261,6 +262,7 @@
             margin-block-end: 5%;
             // background-color: rgb(128, 128, 128, 0.5);
             display: inline-block;
+            color: white;
         }
 
         .img {

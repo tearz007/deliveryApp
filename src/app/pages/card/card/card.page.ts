@@ -82,11 +82,7 @@ export class CardPage implements OnInit {
           }
         })
       })
-
-
     });
-
-
   }
 
   getPrice() {

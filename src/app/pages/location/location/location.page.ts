@@ -80,7 +80,7 @@ export class LocationPage implements OnInit {
 
   gotoMap() {
     this.sendOrder();
-    this.route.navigate(['tap/map'])
+     this.route.navigate(['tap/map'])
   }
 
 
@@ -101,14 +101,12 @@ export class LocationPage implements OnInit {
       Order: product
 
     }).then(function () {
-      alert("Order send")
+      // alert("Order send")
     })
       .catch(function (error) {
         console.error("Error writing document: ", error);
       });
   }
-
-
 
 
 }

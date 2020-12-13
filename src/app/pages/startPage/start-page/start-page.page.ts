@@ -14,78 +14,79 @@ import { ModelPage } from '../../model/model/model.page';
 export class StartPagePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  imgs = []
+  imgs=[]
   fireData = []
   collect: string
-
+  
   cartLength
   cart = this.inforService.cart;
-  constructor(private route: Router, public modalController: ModalController, private inforService: DisplayService, private loginService: LoginService) { }
+  constructor(private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
 
   ngOnInit() {
-    this.loginService.user$
-    this.cartLength = this.inforService.cart.length;
+     this.loginService.user$
+     this.cartLength=this.inforService.cart.length;
+     
+     this.setCollection(this.inforService.collection)
+     this.getC()
 
-    this.setCollection(this.inforService.collection)
-    this.getC()
-
-    this.inforService.getImgs().subscribe(firebaseData => {
-      this.imgs = []
+    this.inforService.getImgs().subscribe(firebaseData=>{
+      this.imgs=[]
       firebaseData.forEach(a => {
-
-        let data: any = a.payload.doc.data();
-        data.id = a.payload.doc.id
+        
+        let data:any=a.payload.doc.data();
+        data.id=a.payload.doc.id
         this.imgs.push(data)
-      });
+      });   
     })
-
+   
   }
 
   slideOpts = {
     initialSlide: 0,
-    slidesPerView: 3,
+    slidesPerView: 2.5,
     speed: 400,
     spaceBetween: 10,
     runCallbacksOnInit: true,
-    slideShadows: true,
-    loop: true,
+  };
 
+  slide2 = {
+    initialSlide: 0,
+    slidesPerView: 1.4,
+    speed: 400,
+    spaceBetween: 10,
+    runCallbacksOnInit: true,
   };
 
   toLogin() {
-    this.route.navigate(['login'])
+   this.route.navigate(['login'])
   }
   toStart() {
     this.route.navigate(['tap'])
-  }
-
-  gotoCart() {
-    this.route.navigate(['tap/cart'])
-  }
-
+   }
+   
   async presentModal(name) {
     this.setCollection(name)
     const modal = await this.modalController.create({
       component: ModelPage,
       cssClass: 'my-custom-class',
     });
-
-    return await modal.present();
+    
+   return await modal.present();
   }
 
-  setgetter(name) {
+  setgetter(name){
     this.setCollection(name)
     this.getC()
   }
+  
 
-
-  setCollection(name) {
-    this.inforService.setCollection(name)
+  setCollection(name){
+   this.inforService.setCollection(name)
   }
 
 
-  getC() {
-    this.cartLength = this.inforService.cart.length;
+  getC(){
+    this.cartLength=this.inforService.cart.length;
     this.collect = this.inforService.collection
     this.inforService.getsub(this.collect).subscribe(firebaseData => {
       this.fireData = []
@@ -99,8 +100,8 @@ export class StartPagePage implements OnInit {
   }
 
   addToCart(_id) {
-    let product = { id: _id, name: this.collect, quntity: 1 }
-
+    let product = { id:_id, name: this.collect,quntity:1 }
+    
     var existItem = this.cart.find(x => x.id == _id);
 
     if (existItem) {
@@ -108,9 +109,11 @@ export class StartPagePage implements OnInit {
     }
     else {
       this.inforService.setCart(product);
-      this.cartLength = this.inforService.cart.length;
+      this.cartLength=this.inforService.cart.length;
     }
   }
 
-
+  gotoCart() {
+    this.route.navigate(['tap/cart'])
+  }
 }
