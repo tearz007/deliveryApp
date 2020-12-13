@@ -1,3 +1,165 @@
+<ion-toolbar color="success">
+  <ion-buttons slot="start">
+    <ion-menu-button>
+      <ion-icon size="large" name="menu-sharp"></ion-icon>
+    </ion-menu-button>
+  </ion-buttons>
+
+  <ion-title>WEEDKIT</ion-title>
+
+  <ion-buttons (click)="toLogin()" slot="end">
+    <ion-button>
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-buttons (click)="gotoCart()" slot="end">
+    <ion-button>
+      <ion-icon name="bag-check-sharp"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+
+</ion-toolbar>
+
+<ion-toolbar color="light">
+  <div class="log">
+    <ion-input clearInput type="text" placeholder="Search ">
+      <ion-icon class="ion-padding-left" slot="start" name="search-outline"></ion-icon>
+    </ion-input>
+  </div>
+</ion-toolbar>
+
+
+
+<div class="contant">
+
+  <ion-content class="ion-padding" color="success">
+
+    <ion-slides pager="true" [options]="slideOpts">
+
+      
+       <ion-slide class="firstSlide" *ngFor="let data of imgs">
+        <div class="itemz" (click)="setgetter(data.name)">
+          <div class="img">
+            <img [src]=data.image>
+          </div>
+
+        </div>
+      </ion-slide>
+    
+
+  
+<!-- 
+      <ion-slide>
+        <div class="itemz">
+          <div class="img">
+            <img src="../../../../assets/categorie/2.jpg">
+          </div>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="itemz">
+          <div class="img">
+            <img src="../../../../assets/categorie/3.jfif">
+          </div>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="itemz">
+          <div class="img">
+            <img src="../../../../assets/categorie/4.webp">
+          </div>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="itemz">
+          <div class="img">
+            <img src="../../../../assets/categorie/5.jfif">
+          </div>
+
+        </div>
+      </ion-slide>
+ -->
+    </ion-slides>
+
+  </ion-content>
+
+</div>
+
+<ion-toolbar color="light">
+  <ion-item-divider>
+    <div class="title">
+      <ion-title>Latest kit</ion-title>
+    </div> 
+  </ion-item-divider> 
+</ion-toolbar>
+
+
+<div class="pets">
+
+
+
+  <ion-content color="light" style="background-color: transparent;">
+
+    <div class="collection ion-padding">
+      <div class="items" >
+
+        <div class="itemCollect" *ngFor="let item of fireData">
+          <div class="img" >
+            <img [src]=item.image>
+          </div>
+
+          <div class="infor">
+            <div class="detail">
+              <div class="name">
+                <ion-label>{{item.name}}</ion-label>
+              </div>
+              <!-- <div class="rate">
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div> -->
+              <div class="price">
+                <ion-label>{{'R'+item.price}}</ion-label>
+              </div>
+            </div>
+            <div class="btn" (click)="addToCart(item.id)">
+              <ion-buttons>
+                <ion-button >
+                  <ion-icon size="large" name="cart-outline"></ion-icon>
+                  
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </ion-content>
+
+
+</div>
+
+
+
+
+<!-- 
 <ion-content>
 
   <div class="container">
@@ -267,3 +429,52 @@
           </div>
         </ion-slide>
 -->
+
+
+
+
+
+
+<!-- 
+  <ion-content style="background-color: transparent;">
+    
+    <div class="collection ion-padding">
+      <div class="items">
+
+        <div class="img">
+          <img src="../../../../assets/dogs/1.jpeg">
+        </div>
+
+        <div class="img">
+          <img src="../../../../assets/dogs/2.jpeg">
+        </div>
+        <div class="img">
+          <img src="../../../../assets/dogs/3.jpeg">
+        </div>
+        <div class="img">
+          <img src="../../../../assets/dogs/4.jpeg">
+        </div>
+        <div class="img">
+          <img src="../../../../assets/dogs/5.jpeg">
+        </div>
+
+        <div class="img">
+          <img src="../../../../assets/categories/pexels-photo-1840106.jpeg">
+        </div>
+
+        <div class="img">
+          <img src="../../../../assets/categories/pexels-photo-1840106.jpeg">
+        </div>
+
+        <div class="img">
+          <img src="../../../../assets/categories/pexels-photo-1840106.jpeg">
+        </div>
+
+        <div class="img">
+          <img src="../../../../assets/categories/pexels-photo-1840106.jpeg">
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
+ -->
