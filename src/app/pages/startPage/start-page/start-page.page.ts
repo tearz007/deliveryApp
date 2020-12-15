@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { IonInfiniteScroll, ModalController, ToastController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
 import { LoginService } from 'src/app/service/login/login.service';
 import { ModelPage } from '../../model/model/model.page';
@@ -20,7 +20,7 @@ export class StartPagePage implements OnInit {
   
   cartLength
   cart = this.inforService.cart;
-  constructor(private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
+  constructor(public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
 
   ngOnInit() {
      this.loginService.user$
@@ -43,18 +43,11 @@ export class StartPagePage implements OnInit {
 
   slideOpts = {
     initialSlide: 0,
-    slidesPerView: 2.5,
+    slidesPerView: 3,
     speed: 400,
     spaceBetween: 10,
     runCallbacksOnInit: true,
-  };
-
-  slide2 = {
-    initialSlide: 0,
-    slidesPerView: 1.4,
-    speed: 400,
-    spaceBetween: 10,
-    runCallbacksOnInit: true,
+    loop:true,
   };
 
   toLogin() {
@@ -73,6 +66,17 @@ export class StartPagePage implements OnInit {
     
    return await modal.present();
   }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Item added to cart',
+      duration: 1000
+    });
+    toast.present();
+  }
+
+
+
 
   setgetter(name){
     this.setCollection(name)
@@ -109,9 +113,13 @@ export class StartPagePage implements OnInit {
     }
     else {
       this.inforService.setCart(product);
-      this.cartLength=this.inforService.cart.length;
+      this.presentToast()
+      // this.cartLength=this.inforService.cart.length;
     }
+    console.log(this.inforService.cart)
   }
+
+
 
   gotoCart() {
     this.route.navigate(['tap/cart'])

@@ -73,7 +73,8 @@
         // display: inline-block;  
         height: 26vh;
         margin-bottom: 20vh;
-
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
         .itemCollect {
             width: 47%;
             height: 100%;
@@ -81,6 +82,8 @@
             background-color: whitesmoke;
             margin-inline-start: 2%;
             margin-block-end: 2%;
+            
+            border-bottom:1px gray solid;
             border-top-left-radius: 10%;
             border-top-right-radius: 10%;
 
@@ -102,23 +105,19 @@
             .infor {
                 margin-top: 5%;
                 width: 100%;
-                // background-color: green;
+                
+
                 position: relative;
     
                 .detail {
                     text-align: left;
-    
-                    .name,
-                    .price {
-                        // font-weight: bold;
-                    }
                 }
     
                 .btn {
                     position: absolute;
                     right: 0%;
                     bottom: 2%;
-                    color: white;
+                    color: gray;
                 }
             }
 
