@@ -32,7 +32,7 @@ export class MapPage implements OnInit {
   ngOnInit() {
     this.lngD = this.mapServ.lng;
     this.latD = this.mapServ.lat;
-    if (this.lngD !=null) {
+    if (this.lngD != null) {
       this.lng = this.lngD;
       this.lat = this.latD;
     } else {
@@ -41,9 +41,10 @@ export class MapPage implements OnInit {
     }
 
     this.mapFunctions();
-
+    this.getCurrentLocation()
     this.mapFunction2();
     this.mapDirection();
+    this.map.on('click', this.onMapClick)
 
   }
 
@@ -61,11 +62,8 @@ export class MapPage implements OnInit {
 
 
   onMapClick(e) {
-    // alert("You clicked the map at " + e.lngLat.lng);
-    // alert("You clicked the map at " + e.lngLat);
     console.log('lat ', e.lngLat.lng)
     console.log('lat ', e.lngLat.lat)
-    //this.marker(e.lngLat.lng,e.lngLat.lat)
   }
 
   mapFunction2() {
@@ -73,18 +71,24 @@ export class MapPage implements OnInit {
       this.map.resize();
     });
     this.map.addControl(new mapboxgl.NavigationControl());
-
   }
-  mapLocation() {
+
+  getCurrentLocation() {
     this.map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
-          enableHighAccuracy: true
+          enableHighAccuracy: true,
         },
-        trackUserLocation: true
+        fitBoundsOptions: {
+          maxZoom: 30
+        },
+        trackUserLocation: true,
+
       })
-    );
+    )
+    console.log()
   }
+
 
   mapDirection() {
 
@@ -95,14 +99,13 @@ export class MapPage implements OnInit {
       mapboxgl,
       marker: true,
       collapsed: true,
-      controls: { inputs: false, instructions: false, profileSwitcher: true },
+      controls: { inputs: true, instructions: false, profileSwitcher: true },
       congestion: true,
       alternatives: true,
       routePadding: 25,
-      zoom: 15,
     });
 
-    this.map.addControl(this.directions);
+    // this.map.addControl(this.directions);
 
     console.log(this.lng, this.lat)
     this.directions.setOrigin([this.lngD, this.latD]);

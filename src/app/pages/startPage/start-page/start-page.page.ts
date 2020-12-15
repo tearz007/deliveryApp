@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonInfiniteScroll, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, IonInfiniteScroll, ModalController, ToastController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
 import { LoginService } from 'src/app/service/login/login.service';
 import { ModelPage } from '../../model/model/model.page';
@@ -20,7 +20,7 @@ export class StartPagePage implements OnInit {
   
   cartLength
   cart = this.inforService.cart;
-  constructor(public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
+  constructor(public alertController: AlertController,public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
 
   ngOnInit() {
      this.loginService.user$
@@ -70,10 +70,41 @@ export class StartPagePage implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Item added to cart',
-      duration: 1000
+      duration: 500
     });
     toast.present();
   }
+
+/* login*/
+
+
+async presentAlertConfirm() {
+
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Soccer!',
+    message: 'Login or logout',
+    buttons: [
+      {
+        text: 'Login',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          this.toLogin()
+        }
+      }, {
+        text: 'Logout',
+        handler: () => {
+          console.log('Confirm Okay');
+         
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 
 
 

@@ -7,7 +7,7 @@
 
   <ion-title>WEEDKIT</ion-title>
 
-  <ion-buttons (click)="toLogin()" slot="end">
+  <ion-buttons (click)="presentAlertConfirm() " slot="end">
     <ion-button>
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-button>
@@ -22,10 +22,10 @@
 
 </ion-toolbar>
 
-<ion-toolbar color="light">
+<ion-toolbar color="success">
   <div class="log">
     <ion-input clearInput type="text" placeholder="Search ">
-      <ion-icon class="ion-padding-left" slot="start" name="search-outline"></ion-icon>
+      <ion-icon style="color: black; margin-left: 5px;" class="ion-padding-left" slot="start" name="search-outline"></ion-icon>
     </ion-input>
   </div>
 </ion-toolbar>
@@ -37,8 +37,7 @@
   <ion-content class="ion-padding" color="success">
 
     <ion-slides pager="true" [options]="slideOpts">
-
-      
+    
        <ion-slide class="firstSlide" *ngFor="let data of imgs">
         <div class="itemz" (click)="setgetter(data.name)">
           <div class="img">
@@ -95,7 +94,7 @@
 
 <ion-toolbar color="light">
   <ion-item-divider>
-    <div class="title">
+    <div class="title" style="color: black;">
       <ion-title>Latest kit</ion-title>
     </div> 
   </ion-item-divider> 

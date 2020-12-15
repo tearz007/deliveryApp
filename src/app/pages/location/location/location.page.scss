@@ -1,16 +1,24 @@
 .collection {
     position: absolute;
-    top: 55%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     width: 80%;
     height: 50vh;
 
     .log {
-
         margin-top: 10%;
         box-shadow: 2px 2px 2px 2px;
         border-radius: 5px;
     }
-
+}
+#map {
+    position: absolute;
+    margin: auto;
+    // top: 0;
+    bottom: 5%;
+    left: 2%;
+    right: 2%;
+    width: 90%;
+    height:35vh;
 }

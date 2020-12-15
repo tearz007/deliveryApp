@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="medium">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -24,7 +24,7 @@
     </div>
     <div class="log">
       <ion-input clearInput type="text" (input)="search($event)" (change)="addressCheck($event)"
-        placeholder="Enter your location" [value]="selectedAddress"></ion-input>
+        placeholder="Enter your street Name" [value]="selectedAddress"></ion-input>
     </div>
 
     <!-- <ion-searchbar (input)="search($event)" (change)="addressCheck($event)" placeholder="Enter your location"
@@ -36,5 +36,8 @@
     </ion-item>
 
   </div>
+  <div id="map" height:100px></div>
+
+
 
 </ion-content>

@@ -6,7 +6,6 @@
 }
 
 ion-footer {
-
     width: 100%;
 
     .btn {
@@ -27,7 +26,7 @@ ion-footer {
 
 ion-col {
     display: flex;
-    background-color: rgb(128, 128, 128, .5);
+    background-color: rgb(128, 128, 128, 0.5);
     border-bottom: 1px solid wheat;
     width: 100%;
     height: 21vh;
@@ -39,7 +38,6 @@ ion-col {
             font-weight: bold;
             font-style: italic;
             font-size: large;
-
         }
     }
 
@@ -54,8 +52,6 @@ ion-col {
         bottom: 10%;
         right: 5%;
     }
-
-
 }
 
 ion-badge {
@@ -78,9 +74,8 @@ ion-badge {
         height: 100%;
     }
 }
-.addCol{
-    width:100%;
-    height:100%;
+.addCol {
+    width: 100%;
+    height: 100%;
     // background-color: green;
-    
 }
