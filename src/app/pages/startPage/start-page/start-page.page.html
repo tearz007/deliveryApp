@@ -25,11 +25,11 @@
 <ion-toolbar color="success">
   <div class="log">
     <ion-input clearInput type="text" placeholder="Search ">
-      <ion-icon style="color: black; margin-left: 5px;" class="ion-padding-left" slot="start" name="search-outline"></ion-icon>
+      <ion-icon style="color: black; margin-left: 5px;" class="ion-padding-left" slot="start" name="search-outline">
+      </ion-icon>
     </ion-input>
   </div>
 </ion-toolbar>
-
 
 
 <div class="contant">
@@ -37,18 +37,129 @@
   <ion-content class="ion-padding" color="success">
 
     <ion-slides pager="true" [options]="slideOpts">
-    
-       <ion-slide class="firstSlide" *ngFor="let data of imgs">
+
+      <!-- if categories data is not available -->
+
+      <div *ngIf="imgs<1">
+        <ion-slide class="firstSlide" *ngFor="let item of dommy">
+          <div class="itemz">
+            <div class="img">
+              <ion-avatar slot="start">
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </ion-avatar>
+            </div>
+          </div>
+        </ion-slide>
+      </div>
+
+      <!-- if categories data is available -->
+
+      <ion-slide class="firstSlide" *ngFor="let data of imgs">
         <div class="itemz" (click)="setgetter(data.name)">
           <div class="img">
             <img [src]=data.image>
           </div>
-
         </div>
       </ion-slide>
-    
 
-  
+    </ion-slides>
+
+  </ion-content>
+
+</div>
+
+<ion-toolbar color="light">
+  <ion-item-divider>
+    <div class="title" style="color: black;">
+      <ion-title>Latest kit</ion-title>
+    </div>
+  </ion-item-divider>
+</ion-toolbar>
+
+
+<div class="pets">
+
+
+
+  <ion-content color="light" style="background-color: transparent;">
+
+    <div class="collection ion-padding">
+      <div class="items">
+        <!-- if firebase data is not available -->
+        <div *ngIf="fireData<1">
+
+          <div class="itemCollect" *ngFor="let item of dommy">
+            <div class="img">
+              <ion-avatar slot="start">
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </ion-avatar>
+            </div>
+
+            <div class="infor">
+              <div class="detail">
+                <div class="name">
+                  <ion-label>
+                    <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+                  </ion-label>
+                </div>
+                <div class="price">
+                  <ion-label>
+                    <ion-skeleton-text animated style="width: 15%"></ion-skeleton-text>
+                  </ion-label>
+                </div>
+              </div>
+              <div class="btn" (click)="addToCart(item.id)">
+                <ion-buttons>
+                  <ion-button>
+                    <ion-icon size="large" name="cart-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+        <!-- if firebase data is available -->
+        <div class="itemCollect" *ngFor="let item of fireData">
+          <div class="img">
+            <img [src]=item.image>
+          </div>
+
+          <div class="infor">
+            <div class="detail">
+              <div class="name">
+                <ion-label>{{item.name}}</ion-label>
+              </div>
+              <div class="price">
+                <ion-label>{{'R'+item.price}}</ion-label>
+              </div>
+            </div>
+            <div class="btn" (click)="addToCart(item.id)">
+              <ion-buttons>
+                <ion-button>
+                  <ion-icon size="large" name="cart-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </ion-content>
+
+
+</div>
+
+
+
+
+
 <!-- 
       <ion-slide>
         <div class="itemz">
@@ -86,66 +197,7 @@
         </div>
       </ion-slide>
  -->
-    </ion-slides>
 
-  </ion-content>
-
-</div>
-
-<ion-toolbar color="light">
-  <ion-item-divider>
-    <div class="title" style="color: black;">
-      <ion-title>Latest kit</ion-title>
-    </div> 
-  </ion-item-divider> 
-</ion-toolbar>
-
-
-<div class="pets">
-
-
-
-  <ion-content color="light" style="background-color: transparent;">
-
-    <div class="collection ion-padding">
-      <div class="items" >
-
-        <div class="itemCollect" *ngFor="let item of fireData">
-          <div class="img" >
-            <img [src]=item.image>
-          </div>
-
-          <div class="infor">
-            <div class="detail">
-              <div class="name">
-                <ion-label>{{item.name}}</ion-label>
-              </div>
-              <div class="price">
-                <ion-label>{{'R'+item.price}}</ion-label>
-              </div>
-            </div>
-            <div class="btn" (click)="addToCart(item.id)">
-              <ion-buttons>
-                <ion-button >
-                  <ion-icon size="large" name="cart-outline"></ion-icon>  
-                </ion-button>
-              </ion-buttons>
-            </div>
-          </div>
-
-
-
-
-
-        </div>
-      </div>
-
-
-    </div>
-  </ion-content>
-
-
-</div>
 
 
 

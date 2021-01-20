@@ -1,4 +1,60 @@
-<ion-header >
+<!--<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="noCart ion-padding" *ngIf="firebaseCard.length<1">
+    hgjghjgjh
+  </div>
+
+  <div *ngIf="firebaseCard.length>0">
+
+    <div *ngFor="let item of firebaseCard">
+      <ion-list>
+        <ion-item>
+          <div class="img">
+            <img [src]=item.image>
+          </div>
+          {{ item.price | currency:'R':'symbol' }}
+          <ion-label slot="end" text-right>{{ (item.price * item.count) | currency:'R':'symbol' }}</ion-label>
+          <ion-buttons (click)="deleteItem(item.id)" slot="end">
+            <ion-button>
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <ion-item-divider  style="width: 100%; background-color: aqua;">
+      <div class="price">
+        Total: <span slot="end">{{ totalPrice | currency:'R':'symbol' }}</span>
+      </div>
+      <div class="checkOut">
+        <ion-button style="height: 7vh;" (click)="presentAlertConfirm()" color="success" expand="full">CheckOut
+        </ion-button>
+      </div>
+
+    </ion-item-divider>
+
+  </div>
+</ion-content>
+  -->
+
+
+
+ <ion-header >
   <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -13,12 +69,12 @@
 <div class="addCol">
 
 
-  <ion-grid class="ion-padding" ion-grid-width=300>
+  <ion-grid  ion-grid-width=300>
 
     <ion-row *ngFor="let item of firebaseCard">
       <ion-col size="12" size-md>
         <div class="img">
-          <!-- <img src="../../../../assets/grinder/2.jfif"> -->
+         
           <img [src]=item.image>
         </div>
         <div class="infor">
@@ -68,19 +124,34 @@
 </div> 
 </ion-content>
 
-
 <ion-footer>
   <ion-toolbar color="medium" color="success">
-    <div class="price">
+    <div class="price" style="float: left;">
       <ion-label>Total Price</ion-label>
       <br>
       <ion-label>{{'R'+totalPrice}}</ion-label>
     </div>
-    <div class="btn ">
+    <div class="btn" style="float: right;">
       <ion-buttons (click)="presentAlertConfirm()" class="ion-padding">
         <ion-button size="large" fill="outline" shape="round">CHECKOUT</ion-button>
       </ion-buttons>
     </div>
   </ion-toolbar>
 </ion-footer>
+ 
 
+ <!-- 
+ <div class="footer">
+  <ion-item-divider  style="width: 100%; background-color: aqua;">
+    <div class="price">
+      Total: <span slot="end">{{ totalPrice | currency:'R':'symbol' }}</span>
+    </div>
+    <div class="checkOut">
+      <ion-button style="height: 7vh;" (click)="presentAlertConfirm()" color="success" expand="full">CheckOut
+      </ion-button>
+    </div>
+
+  </ion-item-divider>
+
+</div>
+ -->

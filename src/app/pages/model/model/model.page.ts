@@ -21,6 +21,8 @@ export class ModelPage implements OnInit {
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
   ngOnInit() {
+
+
     this.cartLength=this.inforService.cart.length;
     this.collect = this.inforService.collection
     this.inforService.getsub(this.collect).subscribe(firebaseData => {

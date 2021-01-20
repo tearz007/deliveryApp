@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonInfiniteScroll, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, IonInfiniteScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
 import { LoginService } from 'src/app/service/login/login.service';
 import { ModelPage } from '../../model/model/model.page';
@@ -17,28 +17,56 @@ export class StartPagePage implements OnInit {
   imgs=[]
   fireData = []
   collect: string
-  
+  test=true
   cartLength
   cart = this.inforService.cart;
-  constructor(public alertController: AlertController,public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
+  data: any;
 
-  ngOnInit() {
+  dommy=[{name:''},{name:''},{name:''},{name:''},{name:''},{name:''},{name:''},{name:''}]
+  constructor(public loadingController: LoadingController,public alertController: AlertController,public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
+
+  async ngOnInit() {
+  
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      // duration: 2000
+    });
+    await loading.present();
+    // this.presentLoading()
+
      this.loginService.user$
      this.cartLength=this.inforService.cart.length;
-     
+
+          
      this.setCollection(this.inforService.collection)
      this.getC()
 
-    this.inforService.getImgs().subscribe(firebaseData=>{
+    this.inforService.getImgs().subscribe( firebaseData=>{
       this.imgs=[]
       firebaseData.forEach(a => {
         
         let data:any=a.payload.doc.data();
         data.id=a.payload.doc.id
         this.imgs.push(data)
-      });   
+      }); 
+
+      console.log(this.imgs.length)
+      loading.dismiss();
+      console.log('Loading dismissed!'); 
     })
    
+    
+  }
+
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.data = {
+        'heading': 'Normal text',
+        'para1': 'Lorem ipsum dolor sit amet, consectetur',
+        'para2': 'adipiscing elit.'
+      };
+    }, 5000);
   }
 
   slideOpts = {
@@ -67,6 +95,20 @@ export class StartPagePage implements OnInit {
    return await modal.present();
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      // duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+
+    // dismiss()
+  }
+
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Item added to cart',
@@ -82,7 +124,7 @@ async presentAlertConfirm() {
 
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
-    header: 'Soccer!',
+    header: 'User',
     message: 'Login or logout',
     buttons: [
       {

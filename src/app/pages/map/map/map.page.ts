@@ -41,9 +41,10 @@ export class MapPage implements OnInit {
     }
 
     this.mapFunctions();
+    this.mapDirection();
     this.getCurrentLocation()
     this.mapFunction2();
-    this.mapDirection();
+    
     this.map.on('click', this.onMapClick)
 
   }
@@ -60,18 +61,19 @@ export class MapPage implements OnInit {
     });
   }
 
-
-  onMapClick(e) {
-    console.log('lat ', e.lngLat.lng)
-    console.log('lat ', e.lngLat.lat)
-  }
-
   mapFunction2() {
     this.map.on("load", () => {
       this.map.resize();
     });
     this.map.addControl(new mapboxgl.NavigationControl());
   }
+
+
+  onMapClick(e) {
+    console.log('lat ', e.lngLat.lng)
+    console.log('lat ', e.lngLat.lat)
+  }
+
 
   getCurrentLocation() {
     this.map.addControl(

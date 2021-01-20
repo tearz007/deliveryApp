@@ -5,8 +5,7 @@ import { DisplayService } from 'src/app/service/display/display.service';
 import { Feature, MapService } from 'src/app/service/map/map.service';
 import { OrderService } from 'src/app/service/order/order.service';
 import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
-declare var mapboxgl;
-declare var MapboxDirections;
+
 
 
 @Component({
@@ -41,54 +40,7 @@ export class LocationPage implements OnInit {
   }
 
   ngOnInit() {
-    mapboxgl.accessToken = this.mapServ.key;
-
-    this.map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [28.61502, -26.45746],
-      // center: [this.lng, this.lat],
-      zoom: 10 // starting zoom
-    });
-    this.getCurrentLocation()
-    this.mapFunction2() 
-  }
-
-  mapFunction2() {
-    this.map.on("load", () => {
-      this.map.resize();
-    });
-    this.map.addControl(new mapboxgl.NavigationControl());
-
-  }
-
-  getCurrentLocation() {
-    var geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-      enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showAccuracyCircle:false
-      });
-      
-     this.map.addControl(geolocate);
-      geolocate.on('trackuserlocationstart', function() {
-      console.log('A trackuserlocationstart event has occurred.')
-      });
-
-      var scale = new mapboxgl.ScaleControl({
-        maxWidth: 80,
-        unit: 'imperial'
-        });
-      this.map.addControl(scale);
-         
-        scale.setUnit('metric');
-  }
-
-  onMapClick(e) {
-    console.log('lat ', e.lngLat.lng)
-    console.log('lat ', e.lngLat.lat)
-  
+ 
   }
 
   search(event: any) {
