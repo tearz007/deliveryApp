@@ -12,10 +12,10 @@ export class DisplayService {
   collection: any
   cart = []
   product$: Products;
- 
-  
 
-  constructor(private afs: AngularFirestore, private route:Router) { }
+
+
+  constructor(private afs: AngularFirestore, private route: Router) { }
 
   getImgs() {
     return this.afs.collection('categories').snapshotChanges();
@@ -27,7 +27,7 @@ export class DisplayService {
   getsub(collec) {
     return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
   }
-  getQuantity(collec,id) {
+  getQuantity(collec, id) {
     return this.afs.collection('products').doc(collec).collection(collec).snapshotChanges();
   }
 
@@ -37,20 +37,22 @@ export class DisplayService {
   }
 
   setCollection(collec) {
-    if(collec<0 || collec ==null){
-collec="grinder"
+    if (collec < 0 || collec == null) {
+      collec = "grinder"
     }
     this.collection = collec
   }
 
-  setCart(collec) {
+  setCart(product) {
     this.product$ = {
-      id: collec.id,
-      name: collec.name,
-      quntity:collec.quantity
+      id: product.id,
+      name: product.name,
+      quntity: product.quantity
     }
     let data = { id: this.product$.id, name: this.product$.name }
     this.cart.push(data)
+
+    console.log(this.cart)
   }
 
   reloadComponent(routes) {
@@ -58,7 +60,7 @@ collec="grinder"
     this.route.onSameUrlNavigation = 'reload';
     this.route.navigate([routes]);
   }
-  
+
 }
 
 

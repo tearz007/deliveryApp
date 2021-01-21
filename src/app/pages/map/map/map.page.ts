@@ -41,11 +41,11 @@ export class MapPage implements OnInit {
     }
 
     this.mapFunctions();
-    this.mapDirection();
+    this.mapDirection();    
     this.getCurrentLocation()
     this.mapFunction2();
     
-    this.map.on('click', this.onMapClick)
+    // this.map.on('click', this.onMapClick)
 
   }
 

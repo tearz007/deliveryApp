@@ -14,19 +14,19 @@ import { ModelPage } from '../../model/model/model.page';
 export class StartPagePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  imgs=[]
+  imgs = []
   fireData = []
   collect: string
-  test=true
+  test = true
   cartLength
   cart = this.inforService.cart;
   data: any;
 
-  dommy=[{name:''},{name:''},{name:''},{name:''},{name:''},{name:''},{name:''},{name:''}]
-  constructor(public loadingController: LoadingController,public alertController: AlertController,public toastController: ToastController,private route: Router, public modalController: ModalController,private inforService:DisplayService,private loginService:LoginService ) { }
+  // dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
+  constructor(public loadingController: LoadingController, public alertController: AlertController, public toastController: ToastController, private route: Router, public modalController: ModalController, private inforService: DisplayService, private loginService: LoginService) { }
 
   async ngOnInit() {
-  
+
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
@@ -35,39 +35,30 @@ export class StartPagePage implements OnInit {
     await loading.present();
     // this.presentLoading()
 
-     this.loginService.user$
-     this.cartLength=this.inforService.cart.length;
+    this.loginService.user$
+    this.cartLength = this.inforService.cart.length;
 
-          
-     this.setCollection(this.inforService.collection)
-     this.getC()
 
-    this.inforService.getImgs().subscribe( firebaseData=>{
-      this.imgs=[]
+    this.setCollection(this.inforService.collection)
+    this.getC()
+
+    this.inforService.getImgs().subscribe(firebaseData => {
+      this.imgs = []
       firebaseData.forEach(a => {
-        
-        let data:any=a.payload.doc.data();
-        data.id=a.payload.doc.id
+
+        let data: any = a.payload.doc.data();
+        data.id = a.payload.doc.id
         this.imgs.push(data)
-      }); 
+      });
 
-      console.log(this.imgs.length)
+      // console.log(this.imgs.length)
       loading.dismiss();
-      console.log('Loading dismissed!'); 
+      console.log('Loading dismissed!');
     })
-   
-    
+
+
   }
 
-  ionViewWillEnter() {
-    setTimeout(() => {
-      this.data = {
-        'heading': 'Normal text',
-        'para1': 'Lorem ipsum dolor sit amet, consectetur',
-        'para2': 'adipiscing elit.'
-      };
-    }, 5000);
-  }
 
   slideOpts = {
     initialSlide: 0,
@@ -75,24 +66,24 @@ export class StartPagePage implements OnInit {
     speed: 400,
     spaceBetween: 10,
     runCallbacksOnInit: true,
-    loop:true,
+    loop: true,
   };
 
   toLogin() {
-   this.route.navigate(['login'])
+    this.route.navigate(['login'])
   }
   toStart() {
     this.route.navigate(['tap'])
-   }
-   
+  }
+
   async presentModal(name) {
     this.setCollection(name)
     const modal = await this.modalController.create({
       component: ModelPage,
       cssClass: 'my-custom-class',
     });
-    
-   return await modal.present();
+
+    return await modal.present();
   }
 
   async presentLoading() {
@@ -117,53 +108,57 @@ export class StartPagePage implements OnInit {
     toast.present();
   }
 
-/* login*/
+  /* login*/
 
 
-async presentAlertConfirm() {
+  async presentAlertConfirm() {
 
-  const alert = await this.alertController.create({
-    cssClass: 'my-custom-class',
-    header: 'User',
-    message: 'Login or logout',
-    buttons: [
-      {
-        text: 'Login',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (blah) => {
-          this.toLogin()
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'User',
+      message: 'Login or logout',
+      buttons: [
+        {
+          text: 'Login',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.toLogin()
+          }
+        }, {
+          text: 'Logout',
+          handler: () => {
+
+            this.logOut()
+          }
         }
-      }, {
-        text: 'Logout',
-        handler: () => {
-          console.log('Confirm Okay');
-         
-        }
-      }
-    ]
-  });
+      ]
+    });
 
-  await alert.present();
-}
-
-
-
-
-
-  setgetter(name){
-    this.setCollection(name)
-    this.getC()
-  }
-  
-
-  setCollection(name){
-   this.inforService.setCollection(name)
+    await alert.present();
   }
 
 
-  getC(){
-    this.cartLength=this.inforService.cart.length;
+  logOut() {
+    alert("logging out")
+    localStorage.clear()
+  }
+
+
+  setgetter(name) {
+    this.setCollection(name);
+    this.getC();
+    this.presentModal(name);
+  }
+
+
+  setCollection(name) {
+    this.inforService.setCollection(name)
+  }
+
+
+  getC() {
+    this.cartLength = this.inforService.cart.length;
     this.collect = this.inforService.collection
     this.inforService.getsub(this.collect).subscribe(firebaseData => {
       this.fireData = []
@@ -171,30 +166,30 @@ async presentAlertConfirm() {
         let data: any = a.payload.doc.data()
         data.id = a.payload.doc.id
         this.fireData.push(data)
-        console.log('gsgs')
       });
     })
   }
 
   addToCart(_id) {
-    let product = { id:_id, name: this.collect,quntity:1 }
-    
+    let product = { id: _id, name: this.collect, quntity: 1 }
+
     var existItem = this.cart.find(x => x.id == _id);
 
     if (existItem) {
       console.log("item already exist");
+      product = { id: 0, name: "", quntity: 0 }
     }
     else {
       this.inforService.setCart(product);
       this.presentToast()
       // this.cartLength=this.inforService.cart.length;
     }
-    console.log(this.inforService.cart)
+    // console.log(this.inforService.cart)
   }
-
 
 
   gotoCart() {
     this.route.navigate(['tap/cart'])
+    
   }
 }

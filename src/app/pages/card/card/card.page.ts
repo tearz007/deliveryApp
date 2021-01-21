@@ -94,6 +94,10 @@ export class CardPage implements OnInit {
 
   deleteItem(id) {
 
+    var existItem = this.cart.find(x => x.id == id);
+
+
+
     for (let i = 0; i < this.inforService.cart.length; i++) {
       if (id == this.inforService.cart[i].id) {
         this.totalPrice = this.totalPrice - this.firebaseCard[i].price
