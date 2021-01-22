@@ -1,4 +1,5 @@
-<!--<ion-header>
+
+<ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -10,7 +11,14 @@
 <ion-content>
 
   <div class="noCart ion-padding" *ngIf="firebaseCard.length<1">
-    hgjghjgjh
+
+    <div class="contant">
+      <ion-title>Cart is Empty</ion-title>
+      <!-- <ion-buttons>
+        <ion-button fill="outline" expand="block">Shop more</ion-button>
+      </ion-buttons> -->
+    </div>
+    
   </div>
 
   <div *ngIf="firebaseCard.length>0">
@@ -35,7 +43,7 @@
 
     </div>
   </div>
-
+<!--
   <div class="footer">
     <ion-item-divider  style="width: 100%; background-color: aqua;">
       <div class="price">
@@ -48,12 +56,25 @@
 
     </ion-item-divider>
 
-  </div>
+  </div> -->
 </ion-content>
-  -->
+<ion-footer>
+  <ion-toolbar color="medium" color="success">
+    <div class="price" style="float: left;">
+      <ion-label>Total Price</ion-label>
+      <br>
+      <ion-label>{{'R'+totalPrice}}</ion-label>
+    </div>
+    <div class="btn" style="float: right;">
+      <ion-buttons (click)="presentAlertConfirm()" class="ion-padding">
+        <ion-button size="large" fill="outline" shape="round">CHECKOUT</ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-footer>
 
 
-
+<!-- 
  <ion-header >
   <ion-toolbar color="success">
     <ion-buttons slot="start">
@@ -138,7 +159,7 @@
     </div>
   </ion-toolbar>
 </ion-footer>
- 
+  -->
 
  <!-- 
  <div class="footer">
