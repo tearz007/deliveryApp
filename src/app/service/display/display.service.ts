@@ -47,12 +47,13 @@ export class DisplayService {
     this.product$ = {
       id: product.id,
       name: product.name,
-      quntity: product.quantity
+      price:product.price,
+      image:product.image,
     }
-    let data = { id: this.product$.id, name: this.product$.name }
+    let data = { id: this.product$.id, name: this.product$.name,price: this.product$.price,image:this.product$.image}
     this.cart.push(data)
 
-    console.log(this.cart)
+    // console.log(this.cart)
   }
 
   reloadComponent(routes) {

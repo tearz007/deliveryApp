@@ -43,18 +43,21 @@ export class ModelPage implements OnInit {
     });
   }
 
-  addToCart(_id) {
-    let product = { id:_id, name: this.collect,quntity:1 }
-    
+  addToCart(_id,_name,_price,_img) {
+    let product = { id: _id, name: _name,price:_price,image:_img }
+
     var existItem = this.cart.find(x => x.id == _id);
 
     if (existItem) {
       console.log("item already exist");
+
     }
     else {
       this.inforService.setCart(product);
-      this.cartLength=this.inforService.cart.length;
+      
+      // this.cartLength=this.inforService.cart.length;
     }
+    // console.log(this.inforService.cart)
   }
 
   gotoCart() {

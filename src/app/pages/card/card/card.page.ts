@@ -25,78 +25,16 @@ export class CardPage implements OnInit {
 
   ngOnInit() {
 
-
     this.cart.forEach(b => {
-      this.inforService.getCart(b.id, b.name).subscribe(firebaseData => {
-
-        this.temp = []
-        firebaseData.forEach(a => {
-
-          let data = a.payload.doc.data();
-          data.id = a.payload.doc.id;
-          var existItem = this.cart.find(x => x.id == data.id);
-
-          if (existItem) {
-            this.temp.push(data)
-          }
-          else {
-            // console.log("item Do exist");
-          }
-        })
-        this.temp.forEach(a => {
-          var existItem = this.firebaseCard.find(x => x.id == a.id);
-          if (existItem) {
-
-          }
-          else {
-            this.totalPrice = 0
-            // console.log("item Do exist");
-            this.firebaseCard.push(a)
-            //to fire
-            console.log('pushed')
-            this.firebaseCard.forEach(a => {
-              this.totalPrice = this.totalPrice + a.price
-              // console.log(this.totalPrice)
-            });
-          }
-        });
-
-      })
-      
-// Quantity code
-      console.log('end line')
-      this.inforService.getQuantity(b.name, b.id).subscribe(data => {
-        
-        this.temp = []
-        data.forEach(a => {
-
-          let data = a.payload.doc.data();
-          data.id = a.payload.doc.id;
-        
-          var existItem = this.cart.find(x => x.id == data.id);
-          if (existItem) {
-            this.temp.push(data)
-          }
-          else {
-            // console.log("item Do exist");
-          }
-        })
-      })
-    });
+      this.firebaseCard.push(b)
+      this.totalPrice = this.totalPrice + b.price
+    })
   }
 
-  getPrice() {
-    this.firebaseCard.forEach(a => {
-      this.totalPrice = this.totalPrice + a.price
-      console.log(this.totalPrice)
-    });
-  }
 
   deleteItem(id) {
 
     var existItem = this.cart.find(x => x.id == id);
-
-
 
     for (let i = 0; i < this.inforService.cart.length; i++) {
       if (id == this.inforService.cart[i].id) {
@@ -107,24 +45,21 @@ export class CardPage implements OnInit {
     }
   }
 
-  add(id) {
 
-    var existItem = this.firebaseCard.find(x => x.id == id);
+  getPrice() {
+   /* this.firebaseCard.forEach(a => {
+      this.totalPrice = this.totalPrice + a.price
+      console.log(this.totalPrice)
+    });*/
 
-    if (existItem) {
-
-    }
-    else {
-
-    }
-
+    this.cart.forEach(a => {
+      this.totalPrice = this.totalPrice + a.price
+    });
   }
 
-  subtract() {
-    if (this.quntity > 1) {
-      this.quntity = this.quntity - 1
-    }
-  }
+
+
+
 
 
   async presentAlertConfirm() {
@@ -178,3 +113,75 @@ export class CardPage implements OnInit {
 
 }
 
+
+
+
+
+/*
+
+
+ this.cart.forEach(b => {
+      this.inforService.getCart(b.id, b.name).subscribe(firebaseData => {
+
+        this.temp = []
+        firebaseData.forEach(a => {
+
+          let data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
+          var existItem = this.cart.find(x => x.id == data.id);
+
+          for (let i = 0; i < this.cart.length; i++) {
+
+            if (this.cart[i].id==data.id) {
+              console.log(this.cart[i].id)
+            }
+
+          }
+          if (existItem) {
+            this.temp.push(data)
+          }
+          else {
+            // console.log("item Do exist");
+          }
+        })
+        this.temp.forEach(a => {
+          var existItem = this.firebaseCard.find(x => x.id == a.id);
+          if (existItem) {
+
+          }
+          else {
+            this.totalPrice = 0
+            // console.log("item Do exist");
+            this.firebaseCard.push(a)
+            //to fire
+            console.log('pushed')
+            this.firebaseCard.forEach(a => {
+              this.totalPrice = this.totalPrice + a.price
+              // console.log(this.totalPrice)
+            });
+          }
+        });
+
+      })
+
+      // Quantity code
+      console.log('end line')
+      this.inforService.getQuantity(b.name, b.id).subscribe(data => {
+
+        this.temp = []
+        data.forEach(a => {
+
+          let data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
+
+          var existItem = this.cart.find(x => x.id == data.id);
+          if (existItem) {
+            this.temp.push(data)
+          }
+          else {
+            // console.log("item Do exist");
+          }
+        })
+      })
+    });
+*/

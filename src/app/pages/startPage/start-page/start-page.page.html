@@ -16,7 +16,9 @@
   <ion-buttons (click)="gotoCart()" slot="end">
     <ion-button>
       <ion-icon name="bag-check-sharp"></ion-icon>
+      <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;" >{{cart.length}}</ion-badge>
     </ion-button>
+    
   </ion-buttons>
 
 
@@ -135,7 +137,7 @@
                 <ion-label>{{'R'+item.price}}</ion-label>
               </div>
             </div>
-            <div class="btn" (click)="addToCart(item.id)">
+            <div class="btn" (click)="addToCart(item.id,item.name,item.price,item.image)">
               <ion-buttons>
                 <ion-button>
                   <ion-icon size="large" name="cart-outline"></ion-icon>
