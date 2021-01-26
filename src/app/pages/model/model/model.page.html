@@ -8,10 +8,10 @@
 
     <ion-buttons style="color: white;" (click)="gotoCart()" slot="end">
       <ion-button>
-        <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;" >{{cart.length}}</ion-badge>
-        
+        <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;">{{cart.length}}</ion-badge>
+
         <!--<ion-icon size=large name="cart-outline"> </ion-icon> -->
-        <ion-icon name="bag-check-sharp"></ion-icon>
+        <ion-icon id="icon" name="bag-add"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -28,9 +28,20 @@
 
           <div class="itemCollect" *ngFor="let item of dommy">
             <div class="img">
-              <ion-avatar slot="start">
-                <ion-skeleton-text animated></ion-skeleton-text>
-              </ion-avatar>
+              <div *ngIf="!data">
+                <div class="ion-padding custom-skeleton">
+                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                  <ion-skeleton-text animated></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                </div>
+              </div>
+              <div *ngIf="data">
+                <ion-avatar slot="start">
+                  <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+              </div>
             </div>
 
             <div class="infor">

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Delivery Infor</ion-title>
+    <ion-title>Delivery </ion-title>
     <ion-buttons (click)="gotoMap()" slot="end">
       <ion-button>
         NEXT
@@ -20,10 +20,10 @@
       <ion-input clearInput type="type" [(ngModel)]="username" placeholder="enter name"></ion-input>
     </div>
     <div class="log">
-      <ion-input clearInput type="number" [(ngModel)]="password" placeholder="enter Phone number"></ion-input>
+      <ion-input clearInput type="number" [(ngModel)]="number" placeholder="enter Phone number"></ion-input>
     </div>
     <div class="log">
-      <ion-input clearInput type="text" (input)="search($event)" (change)="addressCheck($event)"
+      <ion-input clearInput type="text" [(ngModel)]="delivePlace" (input)="search($event)" (change)="addressCheck($event)"
         placeholder="Enter your street Name" [value]="selectedAddress"></ion-input>
     </div>
 

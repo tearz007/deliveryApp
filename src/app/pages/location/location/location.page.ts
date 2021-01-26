@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { DisplayService } from 'src/app/service/display/display.service';
 import { Feature, MapService } from 'src/app/service/map/map.service';
 import { OrderService } from 'src/app/service/order/order.service';
@@ -29,18 +30,21 @@ export class LocationPage implements OnInit {
 
   addresses = [];
 
+  delivePlace
+
   firebaseCard = []
 
   constructor(private mapServ: MapService, private route: Router,
     private displayService: DisplayService,
     private userInfor: UserInforService,
     private afs: AngularFirestore,
+    public alertController: AlertController,
     private orderService: OrderService) {
     this.firebaseCard.push(this.displayService.cart)
   }
 
   ngOnInit() {
- 
+
   }
 
   search(event: any) {
@@ -79,34 +83,58 @@ export class LocationPage implements OnInit {
     this.mapServ.setCoodination(this.lng, this.lat)
   }
 
-  gotoMap() {
-    this.sendOrder();
-    this.route.navigate(['tap/map'])
+  async gotoMap() {
+
+    if (this.delivePlace != null) {
+      this.sendOrder();
+      this.route.navigate(['tap/map'])
+    }else{
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'warning',
+        message: 'Please enter your street name',
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'accept',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              // this.route.navigate(['tap/start-page'])
+            }
+          }
+        ]
+
+      });
+
+      await alert.present();
+    }
+
+
   }
 
 
   sendOrder() {
-    var id, name, image, price, quantity
+    // var id, name, image, price, quantity
     var product = []
     var temp = {}
 
     this.orderService.getOrder().forEach(a => {
       a.forEach(data => {
-        temp = { id: data.id, name: data.name, image: data.image, price: data.price, quantity: data.quantity, longitude: this.lng, latitude: this.lat }
+        temp = { id: data.id, name: data.name, image: data.image, price: data.price, longitude: this.lng, latitude: this.lat }
         product.push(temp)
 
       });
     });
 
-    this.afs.collection('order').doc(this.userInfor.currentUser()).set({
+    this.afs.collection('order').doc(localStorage.getItem("id")).set({
       Order: product
 
-    }).then(function () {
+    }).then(() => {
       // alert("Order send")
-    })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
+      console.log("Order send")
+    }).catch(err => {
+      alert("Error writing document: " + err);
+    });
   }
 
 

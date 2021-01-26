@@ -9,16 +9,16 @@
 
   <ion-buttons (click)="presentAlertConfirm() " slot="end">
     <ion-button>
-      <ion-icon name="person-add-outline"></ion-icon>
+      <ion-icon id="icon1" name="person-add-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
 
   <ion-buttons (click)="gotoCart()" slot="end">
     <ion-button>
-      <ion-icon name="bag-check-sharp"></ion-icon>
-      <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;" >{{cart.length}}</ion-badge>
+      <ion-icon id="icon" name="bag-add"></ion-icon>
+      <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;">{{cart.length}}</ion-badge>
     </ion-button>
-    
+
   </ion-buttons>
 
 
@@ -43,6 +43,7 @@
       <!-- if categories data is not available -->
 
       <div *ngIf="imgs<1">
+
         <ion-slide class="firstSlide" *ngFor="let item of dommy">
           <div class="itemz">
             <div class="img">
@@ -52,6 +53,8 @@
             </div>
           </div>
         </ion-slide>
+
+
       </div>
 
       <!-- if categories data is available -->
@@ -82,7 +85,7 @@
 
 <div class="pets">
 
-  <ion-content color="light" style="background-color: transparent;">
+  <ion-content color="light" style="background-color: rgb(211, 210, 210);">
 
     <div class="collection ion-padding">
       <div class="items">

@@ -47,10 +47,10 @@ export class CardPage implements OnInit {
 
 
   getPrice() {
-   /* this.firebaseCard.forEach(a => {
-      this.totalPrice = this.totalPrice + a.price
-      console.log(this.totalPrice)
-    });*/
+    /* this.firebaseCard.forEach(a => {
+       this.totalPrice = this.totalPrice + a.price
+       console.log(this.totalPrice)
+     });*/
 
     this.cart.forEach(a => {
       this.totalPrice = this.totalPrice + a.price
@@ -64,31 +64,80 @@ export class CardPage implements OnInit {
 
   async presentAlertConfirm() {
 
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Checkout',
-      message: 'Are you sure you want to Checkout? totalprice is R' + this.totalPrice,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.setOrder()
-            this.route.navigate(['location'])
+    var isLoggedin = localStorage.getItem("id");
 
-          }
-        }
-      ]
-    });
+    if (isLoggedin) {
+      console.log(isLoggedin)
 
-    await alert.present();
+
+      if (this.totalPrice > 0) {
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          header: 'Checkout',
+          message: 'Are you sure you want to Checkout? totalprice is R' + this.totalPrice,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (blah) => {
+                console.log('Confirm Cancel: blah');
+              }
+            }, {
+              text: 'Yes',
+              handler: () => {
+                console.log('Confirm Okay');
+                this.setOrder()
+                this.route.navigate(['location'])
+
+              }
+            }
+          ]
+        });
+
+        await alert.present();
+      } else {
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          header: 'warning',
+          message: 'unable to checkout. Add items',
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'accept',
+              cssClass: 'secondary',
+              handler: (blah) => {
+                this.route.navigate(['tap/start-page'])
+              }
+            }
+          ]
+
+        });
+
+        await alert.present();
+      }
+    } else {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'warning',
+        message: 'Please login to be able to chechout ',
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'accept',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              this.route.navigate(['login'])
+            }
+          }
+        ]
+
+      });
+
+      await alert.present();
+    }
+
+
   }
 
 
@@ -99,7 +148,7 @@ export class CardPage implements OnInit {
 
     for (let i = 0; i < this.firebaseCard.length; i++) {
 
-      temp = { id: this.firebaseCard[i].id, name: this.firebaseCard[i].name, image: this.firebaseCard[i].image, price: this.firebaseCard[i].price, quantity: this.firebaseCard[i].quantity }
+      temp = { id: this.firebaseCard[i].id, name: this.firebaseCard[i].name, image: this.firebaseCard[i].image, price: this.firebaseCard[i].price}
       product.push(temp)
     }
     this.orderService.setOrder(product)

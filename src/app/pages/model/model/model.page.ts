@@ -18,11 +18,15 @@ export class ModelPage implements OnInit {
   cartLength
   product$: Observable<Products>
   cart = this.inforService.cart;
+
+  data: any;
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
   ngOnInit() {
 
-
+    
+    this.ionViewWillEnter()
+    
     this.cartLength=this.inforService.cart.length;
     this.collect = this.inforService.collection
     this.inforService.getsub(this.collect).subscribe(firebaseData => {
@@ -34,6 +38,18 @@ export class ModelPage implements OnInit {
       });
     })
 
+    
+
+  }
+
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.data = {
+        'heading': 'Normal text',
+        'para1': 'Lorem ipsum dolor sit amet, consectetur',
+        'para2': 'adipiscing elit.'
+      };
+    }, 5000);
   }
 
   dismiss() {

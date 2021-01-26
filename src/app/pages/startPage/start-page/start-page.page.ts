@@ -22,7 +22,7 @@ export class StartPagePage implements OnInit {
   cart = this.inforService.cart;
   data: any;
 
-  // dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
+   dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
   constructor(public loadingController: LoadingController, public alertController: AlertController, public toastController: ToastController, private route: Router, public modalController: ModalController, private inforService: DisplayService, private loginService: LoginService) { }
 
   async ngOnInit() {
