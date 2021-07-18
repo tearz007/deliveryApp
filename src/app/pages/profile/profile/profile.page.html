@@ -1,27 +1,45 @@
 <ion-header>
-  <ion-toolbar color="success">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Profile</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="success">
+
+        <ion-buttons slot="start" style="padding-left: 2%; width: 30px; height: 30px;">
+            <ion-icon style="width: 100%; height: 100%;" name="logo-gitlab"></ion-icon>
+        </ion-buttons>
+
+        <ion-title style="text-align: center;">Profile</ion-title>
+
+        <!-- <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="person-add-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="bag-check-sharp"></ion-icon>
+                <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;">0</ion-badge>
+            </ion-button>
+
+        </ion-buttons>
+
+
+    </ion-toolbar>
+
+
+
 </ion-header>
 
-<ion-content >
+<ion-content>
 
-  <div class="profile" *ngFor="let item of profile">
+    <div class="profile" *ngFor="let item of profile">
 
-    <ion-label color="primary">{{'Name : '}} {{item.Name}}</ion-label>
-    <br>
-    <ion-label color="primary">{{'Email :'}} {{item.Email}}</ion-label>
-    <br>
-    <ion-label color="primary">{{'PhoneNumber :'}} {{item.PhoneNumber}}</ion-label>
-    <br>
-    <ion-label color="primary">{{'Id :'}} {{item.id}}</ion-label>
+        <ion-label color="primary">{{'Name : '}} {{item.Name}}</ion-label>
+        <br>
+        <ion-label color="primary">{{'Email :'}} {{item.Email}}</ion-label>
+        <br>
+        <ion-label color="primary">{{'PhoneNumber :'}} {{item.PhoneNumber}}</ion-label>
+        <br>
+        <ion-label color="primary">{{'Id :'}} {{item.id}}</ion-label>
 
-  </div>
- 
+    </div>
+
 </ion-content>
-
-
-

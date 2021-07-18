@@ -57,11 +57,6 @@ export class CardPage implements OnInit {
     });
   }
 
-
-
-
-
-
   async presentAlertConfirm() {
 
     const alert = await this.alertController.create({

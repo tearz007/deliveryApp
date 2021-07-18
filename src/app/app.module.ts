@@ -13,15 +13,20 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { environment } from '../environments/environment'
 import { TapPage } from './pages/tap/tap/tap.page';
 import { HttpClientModule } from '@angular/common/http';
+import { StartPagePage } from './pages/startPage/start-page/start-page.page';
+import { TapPagePage } from './pages/tap-page/tap-page.page';
+import { TapPageModule } from './pages/tap/tap/tap.module';
+import { TapPagePageModule } from './pages/tap-page/tap-page.module';
 
 
 @NgModule({
-  declarations: [AppComponent, TapPage],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule,TapPageModule,TapPagePageModule,
     HttpClientModule],
+
   providers: [
     StatusBar,
     SplashScreen,

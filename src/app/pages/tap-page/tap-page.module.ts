@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TapPageRoutingModule } from './tap-routing.module';
+import { TapPagePageRoutingModule } from './tap-page-routing.module';
 
-import { TapPage } from './tap.page';
+import { TapPagePage } from './tap-page.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TapPageRoutingModule
+    TapPagePageRoutingModule
   ],
-  declarations: [TapPage],
-  exports: [
-    TapPage
+  declarations: [TapPagePage],
+  exports:[
+    TapPagePage
   ]
+
 })
-export class TapPageModule {}
+export class TapPagePageModule {}

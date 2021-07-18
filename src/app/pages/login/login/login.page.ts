@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   emailLogin() {
     this.login.userLogin(this.username, this.password).then(() => {
       alert("signed in")
-      this.route.navigate(['tap/start-page'])
+      this.route.navigate(['tap-page/start-page'])
       
       console.log(this.userInfor.currentUser())
       localStorage.setItem('id',this.userInfor.currentUser())

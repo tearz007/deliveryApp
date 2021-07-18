@@ -17,4 +17,6 @@ import { CardPage } from './card.page';
   ],
   declarations: [CardPage]
 })
-export class CardPageModule {}
+export class CardPageModule {
+  
+}

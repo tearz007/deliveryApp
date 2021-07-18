@@ -18,6 +18,7 @@ export class ModelPage implements OnInit {
   cartLength
   product$: Observable<Products>
   cart = this.inforService.cart;
+  dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
   constructor(private route: Router, public modalCtrl: ModalController, private inforService: DisplayService) { }
 
   ngOnInit() {

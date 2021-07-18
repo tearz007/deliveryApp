@@ -28,6 +28,8 @@ export class LocationPage implements OnInit {
   map
 
   addresses = [];
+  Name
+  PhoneNumber
 
   firebaseCard = []
 

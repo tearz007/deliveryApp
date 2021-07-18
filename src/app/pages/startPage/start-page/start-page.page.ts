@@ -22,7 +22,7 @@ export class StartPagePage implements OnInit {
   cart = this.inforService.cart;
   data: any;
 
-  // dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
+  dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
   constructor(public loadingController: LoadingController, public alertController: AlertController, public toastController: ToastController, private route: Router, public modalController: ModalController, private inforService: DisplayService, private loginService: LoginService) { }
 
   async ngOnInit() {
@@ -148,7 +148,7 @@ export class StartPagePage implements OnInit {
   setgetter(name) {
     this.setCollection(name);
     this.getC();
-    this.presentModal(name);
+    // this.presentModal(name);
   }
 
 
@@ -205,10 +205,8 @@ export class StartPagePage implements OnInit {
     // console.log(this.inforService.cart)
   }
 
-
-
   gotoCart() {
-    this.route.navigate(['tap/cart'])
+    this.route.navigate(['tap-page/cart'])
     
   }
 }

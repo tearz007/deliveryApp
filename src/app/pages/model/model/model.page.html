@@ -1,95 +1,95 @@
 <ion-header>
-  <ion-toolbar color="success">
-    <ion-buttons style="color: white;" (click)="dismiss()" slot="start">
-      <ion-button>
-        <ion-icon name="arrow-back-sharp"></ion-icon>Back
-      </ion-button>
-    </ion-buttons>
+    <ion-toolbar color="success">
+        <ion-buttons style="color: white;" (click)="dismiss()" slot="start">
+            <ion-button>
+                <ion-icon name="arrow-back-sharp"></ion-icon>Back
+            </ion-button>
+        </ion-buttons>
 
-    <ion-buttons style="color: white;" (click)="gotoCart()" slot="end">
-      <ion-button>
-        <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;" >{{cart.length}}</ion-badge>
-        
-        <!--<ion-icon size=large name="cart-outline"> </ion-icon> -->
-        <ion-icon name="bag-check-sharp"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+        <ion-buttons style="color: white;" (click)="gotoCart()" slot="end">
+            <ion-button>
+                <ion-badge color="light" slot="end" style="font-size: 10px; height: 13.5px;">{{cart.length}}</ion-badge>
+
+                <!--<ion-icon size=large name="cart-outline"> </ion-icon> -->
+                <ion-icon name="bag-check-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <div class="pets">
 
-  <ion-content color="light" style="background-color: transparent;">
+    <ion-content color="light" style="background-color: transparent;">
 
-    <div class="collection ion-padding">
-      <div class="items">
-        <!-- if firebase data is not available -->
-        <div *ngIf="fireData<1">
+        <div class="collection ion-padding">
+            <div class="items">
+                <!-- if firebase data is not available -->
+                <div *ngIf="fireData.length<1">
 
-          <div class="itemCollect" *ngFor="let item of dommy">
-            <div class="img">
-              <ion-avatar slot="start">
-                <ion-skeleton-text animated></ion-skeleton-text>
-              </ion-avatar>
-            </div>
+                    <div class="itemCollect" *ngFor="let item of dommy">
+                        <div class="img">
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                        </div>
 
-            <div class="infor">
-              <div class="detail">
-                <div class="name">
-                  <ion-label>
-                    <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
-                  </ion-label>
+                        <div class="infor">
+                            <div class="detail">
+                                <div class="name">
+                                    <ion-label>
+                                        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+                                    </ion-label>
+                                </div>
+                                <div class="price">
+                                    <ion-label>
+                                        <ion-skeleton-text animated style="width: 15%"></ion-skeleton-text>
+                                    </ion-label>
+                                </div>
+                            </div>
+                            <div class="btn">
+                                <ion-buttons>
+                                    <ion-button>
+                                        <ion-icon size="large" name="cart-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-buttons>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
-                <div class="price">
-                  <ion-label>
-                    <ion-skeleton-text animated style="width: 15%"></ion-skeleton-text>
-                  </ion-label>
-                </div>
-              </div>
-              <div class="btn" (click)="addToCart(item.id)">
-                <ion-buttons>
-                  <ion-button>
-                    <ion-icon size="large" name="cart-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </div>
-            </div>
+                <!-- if firebase data is available -->
+                <div class="itemCollect" *ngFor="let item of fireData">
+                    <div class="img">
+                        <img [src]=item.image>
+                    </div>
 
-          </div>
+                    <div class="infor">
+                        <div class="detail">
+                            <div class="name">
+                                <ion-label>{{item.name}}</ion-label>
+                            </div>
+                            <div class="price">
+                                <ion-label>{{'R'+item.price}}</ion-label>
+                            </div>
+                        </div>
+                        <div class="btn" (click)="addToCart(item.id,item.name,item.price,item.image)">
+                            <ion-buttons>
+                                <ion-button>
+                                    <ion-icon size="large" name="cart-outline"></ion-icon>
+                                </ion-button>
+                            </ion-buttons>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
 
         </div>
-        <!-- if firebase data is available -->
-        <div class="itemCollect" *ngFor="let item of fireData">
-          <div class="img">
-            <img [src]=item.image>
-          </div>
-
-          <div class="infor">
-            <div class="detail">
-              <div class="name">
-                <ion-label>{{item.name}}</ion-label>
-              </div>
-              <div class="price">
-                <ion-label>{{'R'+item.price}}</ion-label>
-              </div>
-            </div>
-            <div class="btn" (click)="addToCart(item.id,item.name,item.price,item.image)">
-              <ion-buttons>
-                <ion-button>
-                  <ion-icon size="large" name="cart-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-  </ion-content>
+    </ion-content>
 
 
 </div>
