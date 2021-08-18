@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'tap',
-    redirectTo: 'tap/start-page',
+    redirectTo: 'tap-page/start-page',
     pathMatch: 'full'
   },
   {
@@ -28,28 +28,28 @@ const routes: Routes = [
     path: 'start-page',
     loadChildren: () => import('./pages/startPage/start-page/start-page.module').then( m => m.StartPagePageModule)
   },
-  {
-    path: 'tap',component:TapPage,
-    children:[
-      {
-        path: 'start-page',
-        loadChildren: () => import('./pages/startPage/start-page/start-page.module').then( m => m.StartPagePageModule)
-      },
-      {
-        path: 'cart',
-        loadChildren: () => import('./pages/card/card/card.module').then( m => m.CardPageModule)
-      },
+  // {
+  //   path: 'tap',component:TapPage,
+  //   children:[
+  //     {
+  //       path: 'start-page',
+  //       loadChildren: () => import('./pages/startPage/start-page/start-page.module').then( m => m.StartPagePageModule)
+  //     },
+  //     {
+  //       path: 'cart',
+  //       loadChildren: () => import('./pages/card/card/card.module').then( m => m.CardPageModule)
+  //     },
       
-      {
-        path: 'profile',
-        loadChildren: () => import('./pages/profile/profile/profile.module').then( m => m.ProfilePageModule)
-      },
-      {
-        path: 'map',
-        loadChildren: () => import('./pages/map/map/map.module').then( m => m.MapPageModule)
-      },
-    ]
-  },
+  //     {
+  //       path: 'profile',
+  //       loadChildren: () => import('./pages/profile/profile/profile.module').then( m => m.ProfilePageModule)
+  //     },
+  //     {
+  //       path: 'map',
+  //       loadChildren: () => import('./pages/map/map/map.module').then( m => m.MapPageModule)
+  //     },
+  //   ]
+  // },
   
   {
     path: 'model',

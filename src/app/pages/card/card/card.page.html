@@ -20,8 +20,6 @@
             </ion-button>
 
         </ion-buttons>
-
-
     </ion-toolbar>
 
 
@@ -29,7 +27,7 @@
 
 <ion-content>
 
-    <div class="noCart ion-padding" *ngIf="firebaseCard.length<1">
+    <div class="noCart ion-padding" *ngIf="cart.length<1">
 
         <div class="contant">
             <ion-title>Cart is Empty</ion-title>
@@ -40,9 +38,9 @@
 
     </div>
 
-    <div *ngIf="firebaseCard.length>0">
+    <div *ngIf="cart.length>0">
 
-        <div *ngFor="let item of firebaseCard">
+        <div *ngFor="let item of cart">
             <ion-list>
                 <ion-item>
                     <div class="img">
@@ -82,7 +80,7 @@
         <div class="price" style="float: left;">
             <ion-label>Total Price</ion-label>
             <br>
-            <ion-label>{{'R'+totalPrice}}</ion-label>
+            <ion-label>{{'R'+inforService.totalPrice}}</ion-label>
         </div>
         <div class="btn" style="float: right;">
             <ion-buttons (click)="presentAlertConfirm()" class="ion-padding">

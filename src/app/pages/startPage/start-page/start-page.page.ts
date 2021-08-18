@@ -23,7 +23,11 @@ export class StartPagePage implements OnInit {
   data: any;
 
   dommy = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }, { name: '' }]
-  constructor(public loadingController: LoadingController, public alertController: AlertController, public toastController: ToastController, private route: Router, public modalController: ModalController, private inforService: DisplayService, private loginService: LoginService) { }
+  constructor(public loadingController: LoadingController, 
+    public alertController: AlertController,
+     public toastController: ToastController, 
+     private route: Router, public modalController: ModalController,
+      private inforService: DisplayService, private loginService: LoginService) { }
 
   async ngOnInit() {
 
@@ -168,10 +172,30 @@ export class StartPagePage implements OnInit {
         this.fireData.push(data)
       });
     })
+
+    
   }
 
- /* addToCart(_id) {
-    let product = { id: _id, name: this.collect, quntity: 1 }
+  /* addToCart(_id) {
+     let product = { id: _id, name: this.collect, quntity: 1 }
+ 
+     var existItem = this.cart.find(x => x.id == _id);
+ 
+     if (existItem) {
+       console.log("item already exist");
+ 
+     }
+     else {
+       this.inforService.setCart(product);
+       this.presentToast()
+       // this.cartLength=this.inforService.cart.length;
+     }
+     // console.log(this.inforService.cart)
+   }*/
+
+
+  addToCart(_id, _name, _price, _img) {
+    let product = { id: _id, name: _name, price: _price, image: _img }
 
     var existItem = this.cart.find(x => x.id == _id);
 
@@ -184,29 +208,10 @@ export class StartPagePage implements OnInit {
       this.presentToast()
       // this.cartLength=this.inforService.cart.length;
     }
-    // console.log(this.inforService.cart)
-  }*/
-
-
-  addToCart(_id,_name,_price,_img) {
-    let product = { id: _id, name: _name,price:_price,image:_img }
-
-    var existItem = this.cart.find(x => x.id == _id);
-
-    if (existItem) {
-      console.log("item already exist");
-
-    }
-    else {
-      this.inforService.setCart(product);
-      this.presentToast()
-      // this.cartLength=this.inforService.cart.length;
-    }
-    // console.log(this.inforService.cart)
   }
 
   gotoCart() {
     this.route.navigate(['tap-page/cart'])
-    
+
   }
 }

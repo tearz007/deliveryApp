@@ -15,47 +15,39 @@ export class CardPage implements OnInit {
   cart = this.inforService.cart;
   temp = []
   firebaseCard = []
-  totalPrice = 0;
+  totalPrice = this.inforService.totalPrice;
   quntity = 1;
 
-  constructor(private afs: AngularFirestore, private inforService: DisplayService,
+  constructor(private afs: AngularFirestore, public inforService: DisplayService,
     private userInfor: UserInforService, private route: Router,
     public alertController: AlertController,
-    private orderService: OrderService) { }
+    private orderService: OrderService) {
+      
+     }
 
   ngOnInit() {
-
-    this.cart.forEach(b => {
-      this.firebaseCard.push(b)
-      this.totalPrice = this.totalPrice + b.price
-    })
+ 
+    
   }
-
+   
 
   deleteItem(id) {
 
+    this.inforService.deleteItem(id);
     var existItem = this.cart.find(x => x.id == id);
 
-    for (let i = 0; i < this.inforService.cart.length; i++) {
-      if (id == this.inforService.cart[i].id) {
-        this.totalPrice = this.totalPrice - this.firebaseCard[i].price
-        this.firebaseCard.splice(i, 1)
-        this.inforService.cart.splice(i, 1)
-      }
-    }
+    // for (let i = 0; i < this.inforService.cart.length; i++) {
+    //   if (id == this.inforService.cart[i].id) {
+    //     this.totalPrice = this.totalPrice - this.firebaseCard[i].price
+    //     // this.firebaseCard.splice(i, 1)
+    //     this.inforService.cart.splice(i, 1)
+
+    //     console.log(this.firebaseCard[i].id)   
+    //     console.log(this.inforService.cart[i].id)  
+    //   }
+    // }
   }
 
-
-  getPrice() {
-   /* this.firebaseCard.forEach(a => {
-      this.totalPrice = this.totalPrice + a.price
-      console.log(this.totalPrice)
-    });*/
-
-    this.cart.forEach(a => {
-      this.totalPrice = this.totalPrice + a.price
-    });
-  }
 
   async presentAlertConfirm() {
 
@@ -98,7 +90,6 @@ export class CardPage implements OnInit {
       product.push(temp)
     }
     this.orderService.setOrder(product)
-
   }
 
 

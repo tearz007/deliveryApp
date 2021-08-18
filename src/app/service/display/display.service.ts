@@ -12,6 +12,7 @@ export class DisplayService {
   collection: any
   cart = []
   product$: Products;
+  totalPrice = 0;
 
 
 
@@ -36,6 +37,16 @@ export class DisplayService {
     return this.afs.collection('products').doc(name).collection(name).snapshotChanges()
   }
 
+  deleteItem(id){
+    for (let i = 0; i < this.cart.length; i++) {
+      if (id == this.cart[i].id) {
+        this.totalPrice = this.totalPrice - this.cart[i].price
+        this.cart.splice(i, 1)  
+        
+      }
+    }
+  }
+
   setCollection(collec) {
     if (collec < 0 || collec == null) {
       collec = "grinder"
@@ -50,6 +61,8 @@ export class DisplayService {
       price:product.price,
       image:product.image,
     }
+
+    this.totalPrice = this.totalPrice +  product.price;
     let data = { id: this.product$.id, name: this.product$.name,price: this.product$.price,image:this.product$.image}
     this.cart.push(data)
 
