@@ -23,6 +23,7 @@ export interface Geometry {
 export class MapService {
   
   key = 'pk.eyJ1IjoidGVhcnoiLCJhIjoiY2toa2dqcmM3MWIwNjJ5cDlqazhyYzdteiJ9.jYlNVUpq4tkE1jva-mtyqg';
+  
   lat
   lng
   constructor(private http: HttpClient) { }

@@ -52,6 +52,16 @@
             </div>
 
             <div class="list_buttons">
+             
+
+              <ion-buttons (click)="deleteItem(item.id)">
+                <div style="width: 100%; margin: auto; text-align: center;">
+                  <ion-button>
+                    <ion-icon style="color: red;" name="trash-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-buttons>
+
               <ion-buttons>
                 <ion-button>
                   <ion-icon color="success" name="caret-back"></ion-icon>
@@ -62,18 +72,10 @@
                 </ion-button>
               </ion-buttons>
 
-              <ion-buttons (click)="deleteItem(item.id)">
-                <div style="width: 100%; margin: auto; text-align: center;">
-                  <ion-button>
-                    <ion-icon style="color: red;" name="trash-outline"></ion-icon>
-                  </ion-button>
-                </div>
-              </ion-buttons>
-
               <ion-buttons >
                 <div style="width: 100%; margin: auto; text-align: center;">
                   <ion-button>
-                    <ion-icon style="color: rgb(25, 109, 236);" name="information-circle-sharp"></ion-icon>
+                    <ion-icon color="success" name="information-circle-sharp"></ion-icon>
                   </ion-button>
                 </div>
               </ion-buttons>

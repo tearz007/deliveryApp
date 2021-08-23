@@ -82,8 +82,8 @@ export class LocationPage implements OnInit {
   }
 
   gotoMap() {
-    this.sendOrder();
-    this.route.navigate(['tap/map'])
+    // this.sendOrder();
+    this.route.navigate(['tap-page/map'])
   }
 
 

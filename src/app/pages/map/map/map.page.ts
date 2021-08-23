@@ -57,7 +57,7 @@ export class MapPage implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v11',
       // center: [28.61502, -26.45746],
       center: [this.lng, this.lat],
-      zoom: 10 // starting zoom
+      zoom: 15 // starting zoom
     });
   }
 
