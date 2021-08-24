@@ -57,7 +57,10 @@ export class MapPage implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v11',
       // center: [28.61502, -26.45746],
       center: [this.lng, this.lat],
-      zoom: 15 // starting zoom
+      zoom: 10 // starting zoom
+    });
+    this.map.on("load", () => {
+      this.map.resize();
     });
   }
 
@@ -105,6 +108,7 @@ export class MapPage implements OnInit {
       congestion: true,
       alternatives: true,
       routePadding: 25,
+      
     });
 
     // this.map.addControl(this.directions);
@@ -114,6 +118,7 @@ export class MapPage implements OnInit {
     this.directions.setDestination([29.61502, -27.65746])
     this.map.addControl(this.directions);
   }
+
 
   test() {
     console.log(this.lngD, this.latD)
