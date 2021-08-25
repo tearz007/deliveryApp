@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Feature, MapService } from '../../../service/map/map.service'
+import { Component, OnInit ,DoCheck, OnChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Feature, MapService } from '../../../service/map/map.service';
+import { CoodinateService } from 'src/app/service/coodinate.service';
 declare var mapboxgl;
 declare var MapboxDirections;
 declare var MapboxGeocoder;
@@ -24,14 +26,28 @@ export class MapPage implements OnInit {
   lngD = ""
   latD = ""
 
-  constructor(private mapServ: MapService) {
-    this.lngD = this.mapServ.lng;
-    this.latD = this.mapServ.lat;
+  constructor(private mapServ: MapService ,  
+    private coodinateServ:CoodinateService,
+    private activeRouter:ActivatedRoute) {
+  }
+
+  ngDoCheck(): void {
+   
+    this.lngD = this.coodinateServ.lng;
+    this.latD = this.coodinateServ.lat;
+    console.log( " on change "+this.lngD + this.latD )
+
+    this.directions.setOrigin([this.lngD,this.latD ]);
+    this.directions.setDestination([29.61502, -27.65746]);
+    // this.map.addControl(this.directions);
+  
+
   }
 
   ngOnInit() {
-    this.lngD = this.mapServ.lng;
-    this.latD = this.mapServ.lat;
+    this.lngD = this.coodinateServ.lng;
+    this.latD = this.coodinateServ.lat;
+
     if (this.lngD != null) {
       this.lng = this.lngD;
       this.lat = this.latD;
@@ -39,14 +55,12 @@ export class MapPage implements OnInit {
       this.lng = '28.61502';
       this.lat = '-26.45746';
     }
-
+    console.log( " from the "+this.lng + this.lat )
     this.mapFunctions();
-    this.mapDirection();    
+    this.mapDirection();
     this.getCurrentLocation()
     this.mapFunction2();
-    
-    // this.map.on('click', this.onMapClick)
-
+    this.map.on('click', this.onMapClick)
   }
 
   mapFunctions() {
@@ -58,6 +72,13 @@ export class MapPage implements OnInit {
       // center: [28.61502, -26.45746],
       center: [this.lng, this.lat],
       zoom: 15 // starting zoom
+    });
+    this.resizeMap();
+  }
+
+  resizeMap() {
+    this.map.on("load", () => {
+      this.map.resize();
     });
   }
 
@@ -76,6 +97,7 @@ export class MapPage implements OnInit {
 
 
   getCurrentLocation() {
+    this.resizeMap();
     this.map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -93,7 +115,7 @@ export class MapPage implements OnInit {
 
 
   mapDirection() {
-
+    this.resizeMap();
     this.directions = new MapboxDirections({
       accessToken: this.mapServ.key,
       unit: 'metric',
@@ -105,13 +127,14 @@ export class MapPage implements OnInit {
       congestion: true,
       alternatives: true,
       routePadding: 25,
+      interactive:false
     });
 
     // this.map.addControl(this.directions);
 
-    console.log(this.lng, this.lat)
-    this.directions.setOrigin([this.lngD, this.latD]);
-    this.directions.setDestination([29.61502, -27.65746])
+    // console.log(this.lng, this.lat)
+    this.directions.setOrigin([this.lng,this.lat]);
+    this.directions.setDestination([29.61502, -27.65746]);
     this.map.addControl(this.directions);
   }
 

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { CoodinateService } from 'src/app/service/coodinate.service';
 import { DisplayService } from 'src/app/service/display/display.service';
 import { Feature, MapService } from 'src/app/service/map/map.service';
 import { OrderService } from 'src/app/service/order/order.service';
 import { UserInforService } from 'src/app/service/userInfor/user-infor.service';
+
 
 
 
@@ -25,6 +27,7 @@ export class LocationPage implements OnInit {
   selectedAddress: string = "";
   lat;
   lng;
+ 
   map
 
   addresses = [];
@@ -34,6 +37,7 @@ export class LocationPage implements OnInit {
   firebaseCard = []
 
   constructor(private mapServ: MapService, private route: Router,
+    private coodinateService:CoodinateService,
     private displayService: DisplayService,
     private userInfor: UserInforService,
     private afs: AngularFirestore,
@@ -78,12 +82,20 @@ export class LocationPage implements OnInit {
     console.log(this.selectedAddress)
     // this.user.address = this.selectedAddress;
     this.addresses = [];
-    this.mapServ.setCoodination(this.lng, this.lat)
+    this.coodinateService.setCoodination(this.lng, this.lat);
+
+   
   }
 
   gotoMap() {
     // this.sendOrder();
-    this.route.navigate(['tap-page/map'])
+    // this.route.navigate(['tap-page/map'])
+    this.route.navigate(['tap-page/map'], {
+      queryParams: {
+        lngi:this.lng,
+        lati:this.lat
+      },
+    });
   }
 
 
