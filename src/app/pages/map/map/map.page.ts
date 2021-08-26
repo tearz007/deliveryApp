@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CoodinateService } from 'src/app/service/coodinate.service';
 import { Feature, MapService } from '../../../service/map/map.service'
 declare var mapboxgl;
 declare var MapboxDirections;
@@ -18,33 +20,44 @@ export class MapPage implements OnInit {
   turf;
   directions
   addresses = [];
-
   lng = ""
   lat = ""
-  lngD = ""
-  latD = ""
 
-  constructor(private mapServ: MapService) {
-    this.lngD = this.mapServ.lng;
-    this.latD = this.mapServ.lat;
+
+  constructor(private mapServ: MapService ,  
+    private coodinateServ:CoodinateService,
+    private activeRouter:ActivatedRoute) {
+  }
+
+  ngDoCheck(): void {
+   
+    this.lng = this.coodinateServ.lng;
+    this.lat = this.coodinateServ.lat;
+    console.log( " on change "+this.lng + this.lat )
+
+    this.map.removeControl(this.directions);
+    
+   
+  
   }
 
   ngOnInit() {
-    this.lngD = this.mapServ.lng;
-    this.latD = this.mapServ.lat;
-    if (this.lngD != null) {
-      this.lng = this.lngD;
-      this.lat = this.latD;
+    this.lng = this.coodinateServ.lng;
+    this.lat = this.coodinateServ.lat;
+
+
+    if (this.lng != null) {
+      
     } else {
       this.lng = '28.61502';
       this.lat = '-26.45746';
     }
 
     this.mapFunctions();
-    this.mapDirection();    
+    this.mapDirection();
     this.getCurrentLocation()
     this.mapFunction2();
-    
+
     // this.map.on('click', this.onMapClick)
 
   }
@@ -108,24 +121,29 @@ export class MapPage implements OnInit {
       congestion: true,
       alternatives: true,
       routePadding: 25,
-      
+      interactive:false,
+
     });
 
-    // this.map.addControl(this.directions);
-
     console.log(this.lng, this.lat)
-    this.directions.setOrigin([this.lngD, this.latD]);
-    this.directions.setDestination([29.61502, -27.65746])
-    this.map.addControl(this.directions);
-  }
-
-
-  test() {
-    console.log(this.lngD, this.latD)
     this.directions.setOrigin([this.lng, this.lat]);
     this.directions.setDestination([29.61502, -27.65746])
     this.map.addControl(this.directions);
   }
+
+
+
+
+
+
+  test() {
+    console.log(this.lng, this.lat)
+    this.directions.setOrigin([this.lng, this.lat]);
+    this.directions.setDestination([29.61502, -27.65746])
+    this.map.addControl(this.directions);
+  }
+
+
 
 }
 
